@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import ButtonGoBack from '../UI/ButtonGoBack';
-2
+
 const Board = () => {
     const location = useLocation();
     const { state } = location;
@@ -12,8 +12,7 @@ const Board = () => {
 
     useEffect(() => {
         localStorage.setItem(`${state.title}`, JSON.stringify(list));
-        console.log(list)
-    }, [list]);
+    }, [list, state.title]);
 
     const addTask = e => {
         e.preventDefault()

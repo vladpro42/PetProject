@@ -1,7 +1,7 @@
 import React from 'react';
 import { Outlet } from 'react-router-dom';
 import css from "../style/WellcomePage.module.css";
-import svg from "./kanban.svg"
+import svg from "../assets/images/kanban.svg";
 
 
 const WelcomePage = () => {
@@ -17,7 +17,7 @@ const WelcomePage = () => {
                             </p>
                         </div>
                         <div className={css.images}>
-                            <img src={svg} alt="picture" width={500} height={500} />
+                            <img src={svg} alt="menegment" width={500} height={500} />
                         </div>
                     </div>
                     <div className={css.inner__column_two}>

@@ -13,9 +13,9 @@ const Footer = () => {
         <div
           className={pathname === "/auth/login" || pathname === "/auth/register" ? css.footer__inner : "footer__inner"}
         >
-          <a href="#">GitHub</a>
-          <p href="#">2023</p>
-          <a href="#">LinkedIn</a>
+          <a href="/">GitHub</a>
+          <p href="/">2023</p>
+          <a href="/">LinkedIn</a>
         </div>
       </div>
     </footer>
