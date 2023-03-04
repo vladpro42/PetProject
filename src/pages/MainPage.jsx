@@ -11,11 +11,8 @@ const MainPage = () => {
   const [board, dispatch] = useContext(BoardContext);
 
   const [showForm, setShowForm] = useState(false);
+  const [showChangeForm, setShowChangeForm] = useState(false);
   const [alert, setAlert] = useState(false);
-
-  const openForm = () => {
-    setShowForm(prev => !prev)
-  }
 
   const removeBoard = async (id) => {
     dispatch({ type: "removeBoard", payload: id })
@@ -31,7 +28,8 @@ const MainPage = () => {
         <div className="wrapper">
           <h1>Kanban board for teams to organize their work</h1>
           <BoardList
-            showForm={showForm} setShowForm={setShowForm}
+            setShowForm={setShowForm}
+            showForm={showForm}
             dispatch={dispatch}
             board={board}
             data={data}
@@ -49,9 +47,9 @@ const MainPage = () => {
               : <></>
           }
 
-          <button onClick={openForm}>Create board</button>
-          <FormCreateBoard showForm={showForm} setShowForm={setShowForm} />
+          <button onClick={ () => setShowForm(prev => !prev)}>Create board</button>
           <FormChangeBoard editData={editData} showForm={showForm} setShowForm={setShowForm}/>
+          <FormCreateBoard showForm={showChangeForm} setShowForm={setShowChangeForm} />
         </div>
       </div>
     </section >
