@@ -27,6 +27,7 @@ export const BoardReducer = (state, action) => {
                 }
                 return item;
            })
+           localStorage.setItem("board", JSON.stringify(newState));
            return newState;
         }
 
@@ -43,7 +44,7 @@ export const BoardReducer = (state, action) => {
                 }
                 return item
             });
-            console.log(newState)
+            localStorage.setItem("board", JSON.stringify(newState));
             return newState;
         }
             
