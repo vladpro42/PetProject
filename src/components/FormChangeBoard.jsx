@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react';
 import { BoardContext } from '../hoc/BoardProvider';
 
-const FormCreateBoard = ({ editData, showForm, setShowForm }) => {
+const FormCreateBoard = ({ editData, showChangeForm, setShowChangeForm }) => {
     const [board, dispatch] = useContext(BoardContext);
 
     const [title, setTitle] = useState("");
@@ -10,7 +10,7 @@ const FormCreateBoard = ({ editData, showForm, setShowForm }) => {
     const changeBoard = e => {
         e.preventDefault();
         dispatch({ type: "changeBoard", payload: { title, descr, editData} });
-        setShowForm(prev => !prev);
+        setShowChangeForm(prev => !prev);
         setTitle("");
         setDescr("");
     };
@@ -27,8 +27,8 @@ const FormCreateBoard = ({ editData, showForm, setShowForm }) => {
 
     return (
         <form
-            className={showForm ? 'create__board' : 'none'}
-            onClick={() => setShowForm(prev => !prev)}
+            className={showChangeForm ? 'create__board' : 'none'}
+            onClick={() => setShowChangeForm(prev => !prev)}
         >
             <div
                 className='board__inner'

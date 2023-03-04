@@ -30,6 +30,8 @@ const MainPage = () => {
           <BoardList
             setShowForm={setShowForm}
             showForm={showForm}
+            setShowChangeForm={setShowChangeForm}
+            showChangeForm={showChangeForm}
             dispatch={dispatch}
             board={board}
             data={data}
@@ -48,7 +50,7 @@ const MainPage = () => {
           }
 
           <button onClick={ () => setShowForm(prev => !prev)}>Create board</button>
-          <FormChangeBoard editData={editData} showForm={showChangeForm} setShowForm={setShowChangeForm}/>
+          <FormChangeBoard editData={editData} showChangeForm={showChangeForm} setShowChangeForm={setShowChangeForm}/>
           <FormCreateBoard showForm={showForm} setShowForm={setShowForm} />
         </div>
       </div>

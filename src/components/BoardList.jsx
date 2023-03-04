@@ -4,7 +4,7 @@ import RemoveButton from '../UI/RemoveButton';
 import css from "../style/BoardList.module.css";
 import EditButton from '../UI/EditButton';
 
-const BoardList = ({ editData, board, data, setAlert, dispatch, setShowForm}) => {
+const BoardList = ({ editData, board, data, setAlert, dispatch, setShowForm, showChangeForm, setShowChangeForm}) => {
 
     const [currentCard, setCurrentCard] = useState(null)
 
@@ -60,8 +60,9 @@ const BoardList = ({ editData, board, data, setAlert, dispatch, setShowForm}) =>
                             </Link>
                             <EditButton
                                 onClick={ () => {
+                                    console.log("click")
                                     editData.current = item.id;
-                                    setShowForm(prev => !prev);
+                                    setShowChangeForm(prev => !prev);
                                 }}
                                 className={css.title__edit}
                             />
