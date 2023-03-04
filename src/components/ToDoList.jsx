@@ -22,30 +22,25 @@ const ToDoList = () => {
     };
 
     const complitetask = (e, id) => {
-        const target = e.target;
         setList(prev => [...prev].map(item => {
             if (item.id === id) {
                 item.complete = !item.complete;
-                item.complete
-                    ? target.textContent = "✔"
-                    : target.textContent = "⚪"
                 return item;
             }
             return item;
         }));
-
     };
 
     const onDragEnd = results => {
         console.log(results)
 
-        const {draggableId, type, source, mode, reason, destination} = results
+        const { draggableId, type, source, mode, reason, destination } = results
 
-        if(!destination) {
+        if (!destination) {
             return;
         }
 
-        if(
+        if (
             destination.droppableId === source.droppabledId &&
             destination.index === source.index
         ) {
@@ -69,7 +64,7 @@ const ToDoList = () => {
                                 {(provided) => (
                                     <ul
                                         ref={provided.innerRef}
-                                        {...provided.droppableProps} 
+                                        {...provided.droppableProps}
                                         className={css.todo__list}
                                     >
                                         {
@@ -88,7 +83,14 @@ const ToDoList = () => {
                                                                 </div>
                                                                 <div>
                                                                     <button onClick={() => removeTask(item.id)}>X</button>
-                                                                    <button className={css.todo__compliete} onClick={e => complitetask(e, item.id)}>⚪</button>
+                                                                    <button
+                                                                        className={css.todo__compliete}
+                                                                        onClick={e => complitetask(e, item.id)}
+                                                                    >
+                                                                       { item.complete
+                                                                        ?  "✔"
+                                                                        : "⚪"}
+                                                                    </button>
                                                                 </div>
                                                             </li>
                                                         )}
