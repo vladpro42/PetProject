@@ -3,12 +3,13 @@ import AlertDelete from '../components/AlertDelete';
 import BoardList from '../components/BoardList';
 import FormCreateBoard from '../components/FormCreateBoard';
 import { BoardContext } from '../hoc/BoardProvider';
-import "../style/MainPage.css"
+import "../style/MainPage.css";
+import FormChangeBoard from '../components/FormChangeBoard';
 
 const MainPage = () => {
 
   const [board, dispatch] = useContext(BoardContext);
-  
+
   const [showForm, setShowForm] = useState(false);
   const [alert, setAlert] = useState(false);
 
@@ -22,13 +23,21 @@ const MainPage = () => {
   }
 
   const data = useRef(null);
+  const editData = useRef(null)
 
   return (
     <section className='mt board'>
       <div className='container'>
         <div className="wrapper">
           <h1>Kanban board for teams to organize their work</h1>
-          <BoardList dispatch={dispatch} board={board} data={data} setAlert={setAlert}/>
+          <BoardList
+            showForm={showForm} setShowForm={setShowForm}
+            dispatch={dispatch}
+            board={board}
+            data={data}
+            editData={editData}
+            setAlert={setAlert}
+          />
           {
             alert ?
               <AlertDelete onClick={() => {
@@ -42,6 +51,7 @@ const MainPage = () => {
 
           <button onClick={openForm}>Create board</button>
           <FormCreateBoard showForm={showForm} setShowForm={setShowForm} />
+          <FormChangeBoard editData={editData} showForm={showForm} setShowForm={setShowForm}/>
         </div>
       </div>
     </section >

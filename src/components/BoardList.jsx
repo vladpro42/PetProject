@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import RemoveButton from '../UI/RemoveButton';
+import css from "../style/BoardList.module.css";
+import EditButton from '../UI/EditButton';
 
-const BoardList = ({ board, data, setAlert, dispatch }) => {
+const BoardList = ({ editData, board, data, setAlert, dispatch, showForm, setShowForm}) => {
 
     const [currentCard, setCurrentCard] = useState(null)
 
@@ -11,7 +13,7 @@ const BoardList = ({ board, data, setAlert, dispatch }) => {
     }
 
     const dragEndHandler = (e) => {
-        
+
     }
 
     const dragOverHandler = (e) => {
@@ -20,11 +22,11 @@ const BoardList = ({ board, data, setAlert, dispatch }) => {
 
     const dropHandler = (e, board) => {
         e.preventDefault()
-        dispatch({type: "drop", payload: {currentCard, board}})
+        dispatch({ type: "drop", payload: { currentCard, board } })
     }
 
     const sortBoards = (a, b) => {
-        if(a.order > b.order) {
+        if (a.order > b.order) {
             return 1
         } else {
             return -1
@@ -36,22 +38,33 @@ const BoardList = ({ board, data, setAlert, dispatch }) => {
             {
                 board.sort(sortBoards).map((item, index) => {
                     return (
-                        <li 
-                            key={index.toString()} 
-                            className='board__item' 
+                        <li
+                            key={index.toString()}
+                            className='board__item'
                             draggable={true}
-                            onDragStart={ e => dragStartHandler(e, item)}
-                            onDragLeave={ e => dragEndHandler(e)}
-                            onDragEnd={ e => dragEndHandler(e)}
-                            onDragOver={ e => dragOverHandler(e)}
-                            onDrop={ e => dropHandler(e, item)}
+                            onDragStart={e => dragStartHandler(e, item)}
+                            onDragLeave={e => dragEndHandler(e)}
+                            onDragEnd={e => dragEndHandler(e)}
+                            onDragOver={e => dragOverHandler(e)}
+                            onDrop={e => dropHandler(e, item)}
                         >
-                            <Link className='board__link' state={item} to={`${item.title}`}>
-                                <div >
-                                    <h3>{item.title}</h3>
-                                    <p>{item.descr}</p>
-                                </div>
+                            <Link
+                                className='board__link' state={item} to={`${item.title}`}
+                            >
+                                <h3
+                                    className={css.title}
+                                >
+                                    {item.title}
+                                </h3>
+                                <p className={css.descr}>{item.descr}</p>
                             </Link>
+                            <EditButton
+                                onClick={ () => {
+                                    editData.current = item.id;
+                                    setShowForm(prev => !prev)
+                                }}
+                                className={css.title__edit}
+                            />
                             <RemoveButton onClick={(e, id) => {
                                 data.current = item.id
                                 setAlert(prev => !prev)

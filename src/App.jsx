@@ -9,7 +9,7 @@ import MainPage from './pages/MainPage';
 import WelcomePage from './pages/WelcomePage';
 import './style/App.css';
 import { AuthProvider } from './hoc/AuthProvider';
-import Board from './components/Board';
+import ToDoList from './components/ToDoList';
 import { BoardProvider } from './hoc/BoardProvider';
 import EditProfilePage from './pages/EditProfilePage';
 import AuthCheck from './hoc/AuthCheck';
@@ -28,7 +28,7 @@ const App = () => {
               </AuthCheck>
             } />
             <Route path="main/*" element={<AuthCheck>
-                <Board />
+                <ToDoList />
               </AuthCheck>} />
             <Route path='auth/login' element={<FormSignIn />} />
             <Route path='auth/register' element={<FormSingUp />} />
