@@ -9,7 +9,6 @@ import FormChangeBoard from '../components/FormChangeBoard';
 const MainPage = () => {
 
   const [board, dispatch] = useContext(BoardContext);
-
   const [showForm, setShowForm] = useState(false);
   const [showChangeForm, setShowChangeForm] = useState(false);
   const [alert, setAlert] = useState(false);
