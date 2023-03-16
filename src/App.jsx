@@ -13,6 +13,7 @@ import ToDoList from './components/ToDoList';
 import { BoardProvider } from './hoc/BoardProvider';
 import EditProfilePage from './pages/EditProfilePage';
 import AuthCheck from './hoc/AuthCheck';
+import Board from './components/Board/Board';
 
 const App = () => {
 
@@ -22,9 +23,14 @@ const App = () => {
         <Routes>
           <Route path='/' element={<Layout />}>
             <Route index element={<WelcomePage />} />
-            <Route path="main" element={
+           {/*  <Route path="main" element={
               <AuthCheck>
                 <MainPage />
+              </AuthCheck>
+            } /> */}
+            <Route path="main" element={
+              <AuthCheck>
+                <Board />
               </AuthCheck>
             } />
             <Route path="main/*" element={<AuthCheck>

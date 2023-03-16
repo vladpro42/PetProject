@@ -1,0 +1,27 @@
+.app {
+  display: inline-flex;
+  min-height: 100vh;
+  min-width: 100vh;
+  margin-top: var(--heightHeader);
+  padding-top: 10px;
+}
+
+.boards {
+  margin: 5px;
+  width: 350px;
+  border: 2px solid black;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.todo__list {
+}
+
+.todo__item {
+  padding: 20px 15px;
+  font-size: 1.5rem;
+  width: 200px;
+  border: 2px solid black;
+  margin: 5px;
+}

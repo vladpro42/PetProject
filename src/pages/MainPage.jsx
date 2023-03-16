@@ -1,10 +1,12 @@
 import React, { useState, useContext, useRef } from 'react'
+
 import AlertDelete from '../components/AlertDelete';
 import BoardList from '../components/BoardList';
 import FormCreateBoard from '../components/FormCreateBoard';
 import { BoardContext } from '../hoc/BoardProvider';
-import "../style/MainPage.css";
 import FormChangeBoard from '../components/FormChangeBoard';
+
+import "../style/MainPage.css";
 
 const MainPage = () => {
 
