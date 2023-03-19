@@ -3,7 +3,9 @@ import { Draggable, Droppable } from 'react-beautiful-dnd'
 import Task from './Task'
 import css from "./Board.module.css"
 
-const Column = ({ boards, }) => {
+const Column = ({ boards }) => {
+
+    console.log(boards)
     return (
         <>
             {
@@ -27,7 +29,6 @@ const Column = ({ boards, }) => {
                                                 >
                                                     <Task item={item} />
                                                 </div>
-                                                {console.log(provided.placeholder)}
                                                 {provided.placeholder }
                                             </>
                                         )}

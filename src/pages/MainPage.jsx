@@ -5,13 +5,18 @@ import BoardList from '../components/BoardList';
 import FormCreateBoard from '../components/FormCreateBoard';
 import { BoardContext } from '../hoc/BoardProvider';
 import FormChangeBoard from '../components/FormChangeBoard';
+import { useSelector, useDispatch } from 'react-redux';
 
 import "../style/MainPage.css";
 
 const MainPage = () => {
+  const showForm = useSelector( state => console.log(state))
+  console.log(showForm)
+  const setShowForm = () => {
+
+  }
 
   const [board, dispatch] = useContext(BoardContext);
-  const [showForm, setShowForm] = useState(false);
   const [showChangeForm, setShowChangeForm] = useState(false);
   const [alert, setAlert] = useState(false);
 

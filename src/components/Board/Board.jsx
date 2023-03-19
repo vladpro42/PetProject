@@ -1,5 +1,9 @@
 import { useCallback, useState } from 'react';
 import { DragDropContext, Droppable } from "react-beautiful-dnd"
+import { useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
+import FormCreateBoard from '../FormCreateBoard';
+import { handleDragEnd, setBoards } from '../../slice/createBoardSlice';
 
 import css from './Board.module.css';
 import Column from './Column';
@@ -34,87 +38,32 @@ const initState = [
 
 const Board = () => {
 
-  const [boards, setBoards] = useState(initState);
+  const boards = useSelector(state => state.board.boards)
 
-  const onDragEnd = useCallback((result) => {
-    const { destination, source, draggableId } = result
+  const dispatch = useDispatch()
 
-    if (!destination) return;
-
-    if (
-      destination.droppableId === source.droppableId &&
-      destination.index === source.index
-    ) return;
-
-    if (result.type === "column") {
-
-      const newBoards = [...boards]
-
-      newBoards.splice(source.index, 1)
-
-      newBoards.splice(destination.index, 0, JSON.parse(draggableId))
-
-      setBoards(newBoards)
-      return;
-    }
-
-    if (result.type === "task") {
-
-      if (source.droppableId === destination.droppableId) {
-        const newBoards = [...boards]
-        const [filterArray] = newBoards.filter(item => item.boardId === source.droppableId)
-
-        const current = filterArray.items.filter(item => item.id == draggableId)
-        filterArray.items.splice(source.index, 1)
-        filterArray.items.splice(destination.index, 0, ...current)
-
-        newBoards.map(board => {
-          if (board.boardId === source.droppableId) {
-            board = filterArray
-          }
-        })
-
-        setBoards(newBoards)
-        return;
-      }
-
-      const newBoards = [...boards]
-      const [sourceBoard] = newBoards.filter(board => board.boardId === source.droppableId);
-      const [deleteTask] = sourceBoard.items.splice(source.index, 1)
-
-      const [destinationBoard] = newBoards.filter(board => board.boardId === destination.droppableId);
-      destinationBoard.items.splice(destination.index, 0, deleteTask)
-
-      newBoards.map(board => {
-        if (board.boardId === source.droppableId) {
-          board = sourceBoard
-        }
-        if (board.boardId === destination.droppableId) {
-          board = destinationBoard
-        }
-        return;
-      })
-      return setBoards(newBoards)
-    }
-
-  }, [boards])
-
+  const onDragEnd = result => {
+    dispatch(handleDragEnd(result))
+  }
 
   return (
-    <DragDropContext onDragEnd={onDragEnd}>
-      <Droppable droppableId='column' direction='horizontal' type='column'>
-        {(provided) => (
-          <div
-            className={css.app}
-            ref={provided.innerRef}
-            {...provided.droppableProps}
-          >
-            <Column boards={boards} />
-            {provided.placeholder}
-          </div>
-        )}
-      </Droppable>
-    </DragDropContext>
+    <div>
+      <DragDropContext onDragEnd={onDragEnd}>
+        <Droppable droppableId='column' direction='horizontal' type='column'>
+          {(provided) => (
+            <div
+              className={css.app}
+              ref={provided.innerRef}
+              {...provided.droppableProps}
+            >
+              <Column boards={boards} />
+              {provided.placeholder}
+            </div>
+          )}
+        </Droppable>
+      </DragDropContext>
+      <FormCreateBoard />
+    </div>
 
   );
 }

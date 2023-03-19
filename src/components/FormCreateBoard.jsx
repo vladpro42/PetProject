@@ -1,16 +1,22 @@
 import React, { useContext, useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { BoardContext } from '../hoc/BoardProvider';
+import { showCreateBoardForm, createBoard } from "../slice/createBoardSlice"
 
-const FormCreateBoard = ({ showForm, setShowForm }) => {
-    const [board, dispatch] = useContext(BoardContext);
+const FormCreateBoard = () => {
+    /* const [board, dispatch] = useContext(BoardContext); */
+    const showForm = useSelector(state => state.board.showBoard)
+    const dispatchRedux = useDispatch();
 
     const [title, setTitle] = useState("");
     const [descr, setDescr] = useState("");
 
-    const createBoard = e => {
-        e.preventDefault();
-        dispatch({ type: "createBoard", payLoad: { title, descr, id: Date.now(), order: board.length + 1 } });
-        setShowForm(prev => !prev);
+    const submitBoard = event => {
+        event.preventDefault()
+        /*  dispatch({ type: "createBoard", payLoad: { title, descr, id: Date.now(), order: board.length + 1 } }); */
+        dispatchRedux(createBoard({ descr, title }))
+        dispatchRedux(showCreateBoardForm())
         setTitle("");
         setDescr("");
     };
@@ -28,7 +34,7 @@ const FormCreateBoard = ({ showForm, setShowForm }) => {
     return (
         <form
             className={showForm ? 'create__board' : 'none'}
-            onClick={() => setShowForm(prev => !prev)}
+            onClick={() => dispatchRedux(showCreateBoardForm())}
         >
             <div
                 className='board__inner'
@@ -54,7 +60,7 @@ const FormCreateBoard = ({ showForm, setShowForm }) => {
                         type="text"
                     />
                 </label>
-                <button className='boadrd__submit' onClick={createBoard}>Create</button>
+                <button className='boadrd__submit' onClick={(event) => submitBoard(event)}>Create</button>
             </div>
         </form>
     );

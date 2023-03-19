@@ -2,11 +2,19 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../hooks/useAuth';
 import ButtonGoBack from '../UI/ButtonGoBack';
+import { showCreateBoardForm } from '../slice/createBoardSlice';
+import { useDispatch } from 'react-redux';
 
 
 const Header = () => {
 
     const { user } = useAuth();
+    const dispatch = useDispatch()
+   
+
+    const handleCLick = () => {
+        dispatch(showCreateBoardForm())
+    }
 
     return (
         <header>
@@ -27,7 +35,7 @@ const Header = () => {
                                 <ButtonGoBack to="/main">На доски</ButtonGoBack>
                                 <button>Редактировать профиль</button>
                                 <button>Выйти</button>
-                                <button>Создать новую доску</button>
+                                <button onClick={handleCLick}>Создать новую доску</button>
                                 <button>переключить язык</button>
                             </div>
                             : <></>
