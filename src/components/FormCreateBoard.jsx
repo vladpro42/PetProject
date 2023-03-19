@@ -1,11 +1,9 @@
 import React, { useContext, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
-import { BoardContext } from '../hoc/BoardProvider';
 import { showCreateBoardForm, createBoard } from "../slice/createBoardSlice"
 
 const FormCreateBoard = () => {
-    /* const [board, dispatch] = useContext(BoardContext); */
     const showForm = useSelector(state => state.board.showBoard)
     const dispatchRedux = useDispatch();
 
@@ -14,7 +12,6 @@ const FormCreateBoard = () => {
 
     const submitBoard = event => {
         event.preventDefault()
-        /*  dispatch({ type: "createBoard", payLoad: { title, descr, id: Date.now(), order: board.length + 1 } }); */
         dispatchRedux(createBoard({ descr, title }))
         dispatchRedux(showCreateBoardForm())
         setTitle("");
