@@ -11,7 +11,7 @@ const FormCreateBoard = () => {
 
     const submitBoard = event => {
         event.preventDefault()
-        dispatchRedux(createBoard({ descr, title }))
+        dispatchRedux(createBoard({ title }))
         dispatchRedux(showCreateBoardForm())
         setTitle("");
     };

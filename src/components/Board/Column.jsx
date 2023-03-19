@@ -1,11 +1,29 @@
-import React from 'react'
+import React, { useRef } from 'react'
 import { Draggable, Droppable } from 'react-beautiful-dnd'
+import { useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
+import { toggleAlertDeleteBoard } from '../../slice/createBoardSlice'
+
+import RemoveButton from "../../UI/RemoveButton"
+import AlertDelete from "../AlertDelete";
 import Task from './Task'
+
 import css from "./Board.module.css"
+
 
 const Column = ({ boards }) => {
 
-    console.log(boards)
+    const flagDeleteBoard = useSelector(state => state.board.alertDeleteBoard);
+
+    const dispatch = useDispatch();
+    const needId = useRef(null);
+
+    const handleClick = (event, id) => {
+        dispatch(toggleAlertDeleteBoard("board"))
+        needId.current = id
+    }
+
+
     return (
         <>
             {
@@ -18,7 +36,9 @@ const Column = ({ boards }) => {
                                     {...provided.draggableProps}
                                     className={css.boards}
                                 >
-                                    <h1 {...provided.dragHandleProps}>{item.title}</h1>
+                                    <h1 {...provided.dragHandleProps}>
+                                        {item.title}
+                                    </h1>
                                     <Droppable droppableId={item.boardId} type='task'>
                                         {(provided) => (
                                             <>
@@ -29,19 +49,22 @@ const Column = ({ boards }) => {
                                                 >
                                                     <Task item={item} />
                                                 </div>
-                                                {provided.placeholder }
+                                                {provided.placeholder}
                                             </>
                                         )}
                                     </Droppable>
 
+                                    <RemoveButton
+                                        onClick={(e) => handleClick(e, item.boardId)}
+                                    />
                                 </div>
                             )
                             }
-
                         </Draggable>
                     )
                 })
             }
+            {flagDeleteBoard && <AlertDelete id={needId}/>}
         </>
     )
 }

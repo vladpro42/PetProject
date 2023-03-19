@@ -26,6 +26,7 @@ const initialState = {
         ]
     }],
     showBoard: false,
+    alertDeleteBoard: false,
 }
 
 export const createBoardSlice = createSlice({
@@ -38,7 +39,7 @@ export const createBoardSlice = createSlice({
 
         createBoard: (state, action) => {
 
-            const { boards, showBoard } = state;
+            const { boards, ...other } = state;
 
             const newBoards = [...boards, {
                 boardId: boards.length + 1 + "-column",
@@ -47,8 +48,32 @@ export const createBoardSlice = createSlice({
             }]
 
             return {
-                boards: newBoards, showBoard
+                boards: newBoards, ...other
             }
+        },
+
+        removeBoard: (state, {payload}) => {
+            let {boards, alertDeleteBoard, ...other} = state
+            boards = boards.filter(item => {
+                if(item.boardId !== payload.current) {
+                    return item
+                }
+            })
+            alertDeleteBoard = !alertDeleteBoard
+            return {boards, alertDeleteBoard, ...other}
+        },
+
+        toggleAlertDeleteBoard: (state, action) => {
+            console.log(action)
+            if (action.payload === "board") {
+                state.alertDeleteBoard = !state.alertDeleteBoard;
+                return state
+            }
+            return state
+        },
+
+        changeBoard: () => {
+
         },
 
         handleDragEnd: (state, action) => {
@@ -116,6 +141,6 @@ export const createBoardSlice = createSlice({
 })
 
 
-export const { showCreateBoardForm, createBoard, handleDragEnd } = createBoardSlice.actions
+export const { showCreateBoardForm, createBoard, handleDragEnd, toggleAlertDeleteBoard, removeBoard} = createBoardSlice.actions
 
 export default createBoardSlice.reducer
