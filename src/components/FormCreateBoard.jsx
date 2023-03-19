@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 import { showCreateBoardForm, createBoard } from "../slice/createBoardSlice"
@@ -8,14 +8,12 @@ const FormCreateBoard = () => {
     const dispatchRedux = useDispatch();
 
     const [title, setTitle] = useState("");
-    const [descr, setDescr] = useState("");
 
     const submitBoard = event => {
         event.preventDefault()
         dispatchRedux(createBoard({ descr, title }))
         dispatchRedux(showCreateBoardForm())
         setTitle("");
-        setDescr("");
     };
 
     const handleBlur = e => {
@@ -45,15 +43,6 @@ const FormCreateBoard = () => {
                         onBlur={handleBlur}
                         value={title}
                         onChange={e => setTitle(e.target.value)}
-                        type="text"
-                    />
-                </label>
-                <label className="board__label">
-                    <h4 className='board-label__title'>Описание доски</h4>
-                    <input
-                        placeholder='Не обязательное поле'
-                        value={descr}
-                        onChange={e => setDescr(e.target.value)}
                         type="text"
                     />
                 </label>
