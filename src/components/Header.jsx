@@ -35,7 +35,6 @@ const Header = () => {
                                 <ButtonGoBack to="/main">На доски</ButtonGoBack>
                                 <button>Редактировать профиль</button>
                                 <button>Выйти</button>
-                                <button onClick={handleCLick}>Создать новую доску</button>
                                 <button>переключить язык</button>
                             </div>
                             : <></>

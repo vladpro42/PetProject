@@ -27,6 +27,7 @@ const initialState = {
     }],
     showBoard: false,
     alertDeleteBoard: false,
+    showFormCreateTask: false,
 }
 
 export const createBoardSlice = createSlice({
@@ -52,15 +53,15 @@ export const createBoardSlice = createSlice({
             }
         },
 
-        removeBoard: (state, {payload}) => {
-            let {boards, alertDeleteBoard, ...other} = state
+        removeBoard: (state, { payload }) => {
+            let { boards, alertDeleteBoard, ...other } = state
             boards = boards.filter(item => {
-                if(item.boardId !== payload.current) {
+                if (item.boardId !== payload.current) {
                     return item
                 }
             })
             alertDeleteBoard = !alertDeleteBoard
-            return {boards, alertDeleteBoard, ...other}
+            return { boards, alertDeleteBoard, ...other }
         },
 
         toggleAlertDeleteBoard: (state, action) => {
@@ -73,7 +74,7 @@ export const createBoardSlice = createSlice({
         },
 
         changeBoard: () => {
-            
+
         },
 
         handleDragEnd: (state, action) => {
@@ -137,10 +138,28 @@ export const createBoardSlice = createSlice({
             }
 
         },
+
+        createTask: (state, action) => {
+            state.boards[0].items.push({
+                id: Date.now(), content: action.payload
+            });
+        },
+
+        openFormCreateTask: (state) => {
+            state.showFormCreateTask = !state.showFormCreateTask
+        },
     },
 })
 
 
-export const { showCreateBoardForm, createBoard, handleDragEnd, toggleAlertDeleteBoard, removeBoard} = createBoardSlice.actions
+export const {
+    showCreateBoardForm,
+    createBoard,
+    handleDragEnd,
+    toggleAlertDeleteBoard,
+    removeBoard,
+    createTask,
+    openFormCreateTask,
+} = createBoardSlice.actions
 
 export default createBoardSlice.reducer
