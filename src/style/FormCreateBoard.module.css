@@ -1,0 +1,51 @@
+
+.create__board {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    height: 100%;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: var(--formBackground);
+    overflow: hidden;
+}
+
+.board__inner {
+    padding: 50px;
+    border-radius: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: column;
+    background-color: var(--popupInner);
+}
+
+.board__title {
+    color: var(--white, #fff);
+    margin-bottom: 20px;
+}
+
+.board__label {
+    display: block;
+}
+
+.boardLabel__title {
+    color: var(--white, #fff);
+    margin: 10px 0 10px;
+}
+
+.board__input {
+
+}
+
+.boadrd__submit {
+    margin-top: 15px;
+    cursor: pointer;
+}
+
+.none {
+    display: none;
+}

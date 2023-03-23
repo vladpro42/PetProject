@@ -73,7 +73,7 @@ export const createBoardSlice = createSlice({
         },
 
         changeBoard: () => {
-
+            
         },
 
         handleDragEnd: (state, action) => {

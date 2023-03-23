@@ -3,6 +3,8 @@ import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 import { showCreateBoardForm, createBoard } from "../slice/createBoardSlice"
 
+import css from '../style/FormCreateBoard.module.css'
+
 const FormCreateBoard = () => {
     const showForm = useSelector(state => state.board.showBoard)
     const dispatchRedux = useDispatch();
@@ -26,30 +28,32 @@ const FormCreateBoard = () => {
         input.style.borderColor = "transparent";
     }
 
-    return (
-        <form
-            className={showForm ? 'create__board' : 'none'}
-            onClick={() => dispatchRedux(showCreateBoardForm())}
+
+return (
+    <form
+        className={showForm ? css.create__board : css.none}
+        onClick={() => dispatchRedux(showCreateBoardForm())}
+    >
+        <div
+            className={css.board__inner}
+            onClick={e => e.stopPropagation()}
         >
-            <div
-                className='board__inner'
-                onClick={e => e.stopPropagation()}
-            >
-                <h2 className="board__title">Create board</h2>
-                <label className="board__label">
-                    <h4 className='board-label__title'>Название доски</h4>
-                    <input
-                        placeholder='Обязательное поле для ввода'
-                        onBlur={handleBlur}
-                        value={title}
-                        onChange={e => setTitle(e.target.value)}
-                        type="text"
-                    />
-                </label>
-                <button className='boadrd__submit' onClick={(event) => submitBoard(event)}>Create</button>
-            </div>
-        </form>
-    );
+            <h2 className={css.board__title}>Create board</h2>
+            <label className={css.board__label}>
+                <h4 className={css.boardLabel__title}>Название доски</h4>
+                <input
+                    className={css.board__input}
+                    placeholder='Обязательное поле для ввода'
+                    onBlur={handleBlur}
+                    value={title}
+                    onChange={e => setTitle(e.target.value)}
+                    type="text"
+                />
+            </label>
+            <button className={css.boadrd__submit} onClick={(event) => submitBoard(event)}>Create</button>
+        </div>
+    </form>
+);
 }
 
 export default FormCreateBoard;

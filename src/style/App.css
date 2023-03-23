@@ -278,41 +278,6 @@ header {
   justify-content: center;
 }
 
-.create__board {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background-color: var(--formBackground);
-}
-
-.board__title {
-  color: var(--white, #fff);
-  margin-bottom: 20px;
-}
-
-.board__label {
-  display: block;
-}
-
-.board-label__title {
-  color: var(--white, #fff);
-  margin: 10px 0 10px;
-}
-
-.boadrd__submit {
-  margin-top: 15px;
-  cursor: pointer;
-}
-
-.none {
-  display: none;
-}
-
 .alert {
   position: absolute;
   left: 0;
