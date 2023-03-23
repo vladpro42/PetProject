@@ -1,7 +1,7 @@
 import React from 'react';
 import css from './RemoveButton.module.css';
 
-const RemoveButton = ({ onClick, id, ...props }) => {
+const RemoveButton = ({ onClick, ...props }) => {
   return (
     <button onClick={onClick} className={css.button} {...props}>
       <svg height="30" viewBox="0 96 960 960" width="30">

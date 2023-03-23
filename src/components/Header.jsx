@@ -2,20 +2,12 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../hooks/useAuth';
 import ButtonGoBack from '../UI/ButtonGoBack';
-import { showCreateBoardForm } from '../slice/createBoardSlice';
-import { useDispatch } from 'react-redux';
 
 
 const Header = () => {
 
     const { user } = useAuth();
-    const dispatch = useDispatch()
    
-
-    const handleCLick = () => {
-        dispatch(showCreateBoardForm())
-    }
-
     return (
         <header>
             <div className="container">

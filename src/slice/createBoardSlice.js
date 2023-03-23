@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, current } from "@reduxjs/toolkit";
 
 const initialState = {
     boards: [{
@@ -148,6 +148,21 @@ export const createBoardSlice = createSlice({
         openFormCreateTask: (state) => {
             state.showFormCreateTask = !state.showFormCreateTask
         },
+
+        removeTask: (state, action) => {
+            console.log(action.payload)
+
+            state.boards.filter(board => {
+                if (board.boardId === action.payload.boardId) {
+                    board.items = board.items.filter(item => {
+                        if (item.id !== action.payload.taskId) {
+                            return item
+                        }
+                    })
+                    return board
+                }
+            })
+        },
     },
 })
 
@@ -160,6 +175,7 @@ export const {
     removeBoard,
     createTask,
     openFormCreateTask,
+    removeTask,
 } = createBoardSlice.actions
 
 export default createBoardSlice.reducer

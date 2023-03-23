@@ -1,8 +1,13 @@
-import React from 'react'
-import { Draggable } from 'react-beautiful-dnd'
-import css from "./Board.module.css"
+import React from 'react';
+import { Draggable } from 'react-beautiful-dnd';
+
+import RemoveButton from '../../UI/RemoveButton';
+import css from "./Board.module.css";
+import { removeTask } from "../../slice/createBoardSlice";
+import { useDispatch } from 'react-redux';
 
 const Task = ({ item }) => {
+    const dispatch = useDispatch();
     return (
         <>
             {
@@ -14,13 +19,16 @@ const Task = ({ item }) => {
                                 ref={provided.innerRef}
                                 {...provided.draggableProps}
                                 {...provided.dragHandleProps}
-                            >{child.content}</p>
+                            >
+                                {child.content}
+                                <RemoveButton onClick={() => dispatch(removeTask({boardId: item.boardId, taskId: child.id}))} />
+                            </p>
                         )}
                     </Draggable>
                 ))
             }
         </>
-    )
-}
+    );
+};
 
-export default Task
+export default Task;
