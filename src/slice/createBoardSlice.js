@@ -1,4 +1,4 @@
-import { createSlice, current } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
     boards: [{
@@ -71,10 +71,6 @@ export const createBoardSlice = createSlice({
                 return state
             }
             return state
-        },
-
-        changeBoard: () => {
-
         },
 
         handleDragEnd: (state, action) => {

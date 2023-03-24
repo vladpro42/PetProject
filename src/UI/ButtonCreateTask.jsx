@@ -1,8 +1,8 @@
 import React from 'react';
 
-const CreateNewTask = ({onClick}) => {
+const CreateNewTask = ({onClick, className}) => {
     return (
-        <button onClick={onClick} className="Board_todo__item__gxeiC">CreateNewTask</button>
+        <button onClick={onClick} className={className}>Создать новый таск</button>
     );
 };
 

@@ -2,12 +2,13 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../hooks/useAuth';
 import ButtonGoBack from '../UI/ButtonGoBack';
+import { ToggleButton } from '../UI/ToggleButton';
 
 
 const Header = () => {
 
     const { user } = useAuth();
-   
+
     return (
         <header>
             <div className="container">
@@ -25,9 +26,10 @@ const Header = () => {
                             ? <div className="other__btn">
                                 <ButtonGoBack to="/">На стартовую страницу</ButtonGoBack>
                                 <ButtonGoBack to="/main">На доски</ButtonGoBack>
-                                <button>Редактировать профиль</button>
-                                <button>Выйти</button>
+                                {/*  <button>Редактировать профиль</button> */}
+                                {/* <button>Выйти</button> */}
                                 <button>переключить язык</button>
+                                <ToggleButton></ToggleButton>
                             </div>
                             : <></>
                     }

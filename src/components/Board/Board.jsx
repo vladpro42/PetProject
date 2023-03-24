@@ -23,12 +23,14 @@ const Board = () => {
   }
 
   return (
-    <div>
-      <nav style={{ marginTop: "75px", background: 'gray' }}>
-        <ButtonCreateTask onClick={() => dispatch(openFormCreateTask())} />
-        <button onClick={() => dispatch(showCreateBoardForm())}>Создать новую доску</button>
+    <div className={css.board__container}>
+      <nav className={css.board__navigate} style={{ marginTop: "75px", background: 'gray' }}>
+        <button className={css.board__createBoard} onClick={() => dispatch(showCreateBoardForm())}>Создать новую доску</button>
+        <ButtonCreateTask className={css.board__createBoard} onClick={() => dispatch(openFormCreateTask())} />
       </nav>
-      {flagFormCreateNewTask && <FormCreateNewTask />}
+      {/*  {!flagFormCreateNewTask && (
+       
+      )} */}
       <DragDropContext onDragEnd={onDragEnd}>
         <Droppable droppableId='column' direction='horizontal' type='column'>
           {(provided) => (
@@ -44,6 +46,7 @@ const Board = () => {
         </Droppable>
       </DragDropContext>
       <FormCreateBoard />
+      {flagFormCreateNewTask && <FormCreateNewTask />}
 
 
     </div>
