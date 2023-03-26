@@ -1,8 +1,11 @@
 import React from 'react';
 import css from "../style/BoardList.module.css";
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 const FormCreateTask = ({setList}) => {
+
+    const {t} = useTranslation();
 
     const [taskName, setTaskName] = useState("");
     const [taskDescr, setTaskDescr] = useState("");
@@ -17,18 +20,18 @@ const FormCreateTask = ({setList}) => {
 
     return (
         <form className={css.todo__form}>
-            <h2 className={[css.title, css.form__title].join(" ")}>Create task</h2>
+            <h2 className={[css.title, css.form__title].join(" ")}>{t("Create task")}</h2>
             <div className={css.container__label}>
                 <label className={css.label}>
-                    <h6 className={css.label__title}>Название</h6>
+                    <h6 className={css.label__title}>{t("name task")}</h6>
                     <input value={taskName} onChange={e => setTaskName(e.target.value)} type="text" />
                 </label>
                 <label className={css.label}>
-                    <h6 className={css.label__title}>Описание</h6>
+                    <h6 className={css.label__title}>{t("description")}</h6>
                     <input value={taskDescr} onChange={e => setTaskDescr(e.target.value)} type="text" />
                 </label>
             </div>
-            <button onClick={addTask}>Create task</button>
+            <button onClick={addTask}>{t("Create task button")}</button>
         </form>
     );
 };

@@ -1,10 +1,13 @@
 import React, { useState } from 'react'
+import { useTranslation } from 'react-i18next';
 import { useNavigate, Link } from 'react-router-dom';
 import { useAuth } from '../hooks/useAuth';
 import css from "./style/SignUp.module.css";
 
 
 const FormSignIn = () => {
+
+    const {t} = useTranslation();
 
     const navigate = useNavigate();
 
@@ -22,7 +25,7 @@ const FormSignIn = () => {
 
         <form className={css.sign} style={{ marginTop: "var(--heightHeader)" }}>
             <div className={css.sign__container}>
-                <h1 className={css.title}>Sign In</h1>
+                <h1 className={css.title}>{t("Sign In")}</h1>
                 <div className={css.sign__wrapper}>
                     <label className={css.label}>
                         <input
@@ -31,7 +34,7 @@ const FormSignIn = () => {
                             onChange={e => setLogin(e.target.value)}
                             className={css.input}
                             type="text"
-                            placeholder='Введите логин или почту'
+                            placeholder={t("input login or email placeholder")}
                         />
                     </label>
                     <label className={css.label}>
@@ -41,14 +44,14 @@ const FormSignIn = () => {
                             onChange={e => setPassword(e.target.value)}
                             className={css.input}
                             type="password"
-                            placeholder='Введите пароль'
+                            placeholder={t("input password placeholder")}
                         />
                     </label>
                 </div>
                 <button onClick={handleClickSubmit} type='submit' className={css.signUp}>
-                    Войти
+                    {t("sign button")}
                 </button>
-                <Link to="/auth/register" className={css.text}>У меня нет аккаунта</Link>
+                <Link to="/auth/register" className={css.text}>{t("I don't have an account")}</Link>
             </div>
         </form>
 
