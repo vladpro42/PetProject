@@ -1,13 +1,18 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../hooks/useAuth';
 import ButtonGoBack from '../UI/ButtonGoBack';
 import { ToggleButton } from '../UI/ToggleButton';
+import i18n from "../i18next"
 
 
 const Header = () => {
 
+    const { t, i18n } = useTranslation();
     const { user } = useAuth();
+
+
 
     return (
         <header>
@@ -16,23 +21,22 @@ const Header = () => {
                     <a className='header__logo' href="/">LOGO</a>
                     {
                         !user ? <div className="sign__wrapper">
-                            <Link to="auth/login" className='header__sign'>Sign In</Link>
-                            <Link to="auth/register" className='header__sign'>Sign Up</Link>
+                            <Link to="auth/login" className='header__sign'>{t("Sign In")}</Link>
+                            <Link to="auth/register" className='header__sign'>{t("sign Up")}</Link>
                         </div> : <></>
                     }
 
                     {
                         user
                             ? <div className="other__btn">
-                                <ButtonGoBack to="/">На стартовую страницу</ButtonGoBack>
-                                <ButtonGoBack to="/main">На доски</ButtonGoBack>
+                                <ButtonGoBack to="/">{t("to start page")}</ButtonGoBack>
+                                <ButtonGoBack to="/main">{t("on boards")}</ButtonGoBack>
                                 {/*  <button>Редактировать профиль</button> */}
                                 {/* <button>Выйти</button> */}
-                                <button>переключить язык</button>
-                                <ToggleButton></ToggleButton>
                             </div>
                             : <></>
                     }
+                    <ToggleButton></ToggleButton>
                 </div>
             </div>
         </header>

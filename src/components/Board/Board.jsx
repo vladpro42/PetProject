@@ -9,9 +9,12 @@ import FormCreateNewTask from "../FormCreateNewTask"
 import ButtonCreateTask from "../../UI/ButtonCreateTask";
 
 import css from './Board.module.css';
+import { useTranslation } from "react-i18next";
 
 
 const Board = () => {
+
+  const { t } = useTranslation();
 
   const boards = useSelector(state => state.board.boards);
   const flagFormCreateNewTask = useSelector(state => state.board.showFormCreateTask);
@@ -25,7 +28,7 @@ const Board = () => {
   return (
     <div className={css.board__container}>
       <nav className={css.board__navigate} style={{ marginTop: "75px", background: 'gray' }}>
-        <button className={css.board__createBoard} onClick={() => dispatch(showCreateBoardForm())}>Создать новую доску</button>
+        <button className={css.board__createBoard} onClick={() => dispatch(showCreateBoardForm())}>{t("create a new board")}</button>
         <ButtonCreateTask className={css.board__createBoard} onClick={() => dispatch(openFormCreateTask())} />
       </nav>
       {/*  {!flagFormCreateNewTask && (

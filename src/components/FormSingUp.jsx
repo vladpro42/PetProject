@@ -3,8 +3,11 @@ import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../hooks/useAuth';
 import css from "./style/SignUp.module.css";
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 const FormSingUp = () => {
+
+  const { t } = useTranslation();
 
   const [login, setLogin] = useState("");
   const [password, setPassword] = useState("");
@@ -23,7 +26,7 @@ const FormSingUp = () => {
   return (
     <form className={css.sign} style={{ marginTop: "var(--heightHeader)" }}>
       <div className={css.sign__container}>
-        <h1 className={css.title}>Sign Up</h1>
+        <h1 className={css.title}>{t("sign Up")}</h1>
         <div className={css.sign__wrapper}>
           <label className={css.label}>
             <input
@@ -31,7 +34,7 @@ const FormSingUp = () => {
               onChange={e => setEmail(e.target.value)}
               className={css.input}
               type="text"
-              placeholder='Введите почту '
+              placeholder={t("sign up placeholder input email")}
             />
           </label>
           <label className={css.label}>
@@ -40,7 +43,7 @@ const FormSingUp = () => {
               onChange={e => setLogin(e.target.value)}
               className={css.input}
               type="text"
-              placeholder='Введите логин'
+              placeholder={t("sign up placeholder input login")}
             />
           </label>
           <label className={css.label}>
@@ -49,14 +52,14 @@ const FormSingUp = () => {
               onChange={e => setPassword(e.target.value)}
               className={css.input}
               type="password"
-              placeholder='Введите пароль'
+              placeholder={t("sign up placeholder input password")}
             />
           </label>
         </div>
         <button onClick={handleClickSingUp} className={css.signUp}>
-          <p>Зарегистрироваться</p>
+          <p>{t("sign up")}</p>
         </button>
-          <Link to="/auth/login" className={css.text}>У меня уже есть аккаунт</Link>
+        <Link to="/auth/login" className={css.text}>{t("I have an account")}</Link>
       </div>
     </form>
   )

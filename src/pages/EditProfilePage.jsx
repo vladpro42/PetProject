@@ -3,7 +3,7 @@ import { useAuth } from '../hooks/useAuth';
 
 const EditProfilePage = () => {
     const { user } = useAuth();
-    console.log(user)
+    
     return (
 
         <div className='profile' style={{ marginTop: "var(--heightHeader)" }} >
