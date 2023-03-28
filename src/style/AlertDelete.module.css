@@ -1,0 +1,43 @@
+.alert {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(57, 55, 55, 0.496);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.alert__delete {
+    padding: 75px;
+    background-color: rgb(53, 52, 52);
+    border-radius: 15px;
+}
+
+.alert__title {
+    color: var(--white);
+    margin-bottom: 20px;
+}
+
+.alert__button_delete {
+    background-color: red;
+    color: var(--white);
+    margin-right: 10px;
+}
+
+
+.alert__button .alert__button_delete{
+}
+
+.alert__button {
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.alert__button:hover {
+    transform: translateY(5px);
+}
