@@ -27,13 +27,10 @@ const Board = () => {
 
   return (
     <div className={css.board__container}>
-      <nav className={css.board__navigate} style={{ marginTop: "75px", background: 'gray' }}>
+      <nav className={css.board__navigate}>
         <button className={css.board__createBoard} onClick={() => dispatch(showCreateBoardForm())}>{t("create a new board")}</button>
         <ButtonCreateTask className={css.board__createBoard} onClick={() => dispatch(openFormCreateTask())} />
       </nav>
-      {/*  {!flagFormCreateNewTask && (
-       
-      )} */}
       <DragDropContext onDragEnd={onDragEnd}>
         <Droppable droppableId='column' direction='horizontal' type='column'>
           {(provided) => (

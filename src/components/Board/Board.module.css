@@ -10,6 +10,7 @@
   align-items: center;
   justify-content: flex-start;
   flex-direction: column;
+  padding-top: 75px;
 }
 
 .board__createBoard {
@@ -79,4 +80,11 @@
   border: 2px solid black;
   margin: 5px;
   position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.todo__item>.removeButton {
+  position: initial;
 }

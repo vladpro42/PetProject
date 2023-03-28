@@ -21,7 +21,9 @@ const Task = ({ item }) => {
                                 {...provided.dragHandleProps}
                             >
                                 {child.content}
-                                <RemoveButton onClick={() => dispatch(removeTask({boardId: item.boardId, taskId: child.id}))} />
+                                <RemoveButton
+                                    className={css.removeButton}
+                                    onClick={() => dispatch(removeTask({ boardId: item.boardId, taskId: child.id }))} />
                             </p>
                         )}
                     </Draggable>
