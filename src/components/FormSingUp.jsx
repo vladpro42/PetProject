@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../hooks/useAuth';
-import css from "./style/SignUp.module.css";
+import css from "../style/SignUp.module.css";
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 

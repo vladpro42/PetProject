@@ -1,6 +1,6 @@
 import React from 'react';
 import { useLocation } from 'react-router-dom';
-import css from "./style/SignUp.module.css";
+import css from "../style/SignUp.module.css"
 
 const Footer = () => {
 

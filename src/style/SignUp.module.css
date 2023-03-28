@@ -3,12 +3,13 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    flex-direction: column;  
+    flex-direction: column;
     width: 100%;
 }
 
-.sign, .footer {
-    background: url("../../assets/images/vec__photo.jpg") no-repeat;
+.sign,
+.footer {
+    background: url("../assets/images/vec__photo.jpg") no-repeat;
     background-position: right right;
     background-size: cover;
     background-repeat: no-repeat;
@@ -28,7 +29,7 @@
     height: 30px;
 }
 
-.footer__inner > * {
+.footer__inner>* {
     color: #fff;
 }
 
@@ -63,7 +64,7 @@
     display: block;
 }
 
-.label + .label {
+.label+.label {
     margin-top: 25px;
 }
 
@@ -110,4 +111,3 @@
 .text:hover {
     border-bottom: 1px solid #fff;
 }
-
