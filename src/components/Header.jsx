@@ -4,25 +4,24 @@ import { Link } from 'react-router-dom';
 import { useAuth } from '../hooks/useAuth';
 import ButtonGoBack from '../UI/ButtonGoBack';
 import { ToggleButton } from '../UI/ToggleButton';
-import i18n from "../i18next"
+
+import css from "../style/Header.module.css"
 
 
 const Header = () => {
 
-    const { t, i18n } = useTranslation();
+    const { t } = useTranslation();
     const { user } = useAuth();
 
-
-
     return (
-        <header>
+        <header className={css.header}>
             <div className="container">
-                <div className="header__inner">
-                    <a className='header__logo' href="/">LOGO</a>
+                <div className={css.header__inner}>
+                    <a className={css.header__logo} href="/">LOGO</a>
                     {
                         !user ? <div className="sign__wrapper">
-                            <Link to="auth/login" className='header__sign'>{t("Sign In")}</Link>
-                            <Link to="auth/register" className='header__sign'>{t("sign Up")}</Link>
+                            <Link to="auth/login" className={css.header__sign}>{t("Sign In")}</Link>
+                            <Link to="auth/register" className={css.header__sign}>{t("sign Up")}</Link>
                         </div> : <></>
                     }
 
