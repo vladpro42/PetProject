@@ -19,6 +19,7 @@
 .alert__title {
     color: var(--white);
     margin-bottom: 20px;
+    text-align: center;
 }
 
 .alert__button_delete {

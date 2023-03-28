@@ -33,6 +33,9 @@ const resources = {
             "I have an account": "I have an account",
             "to start page": "to start page",
             "on boards": "on boards",
+            "are you sure": "Are you sure?",
+            "delete": "Delete",
+            "cancel": "Cancel",
         }
     },
 
@@ -67,6 +70,9 @@ const resources = {
             "I have an account": "У меня уже есть аккаунт",
             "to start page": "На стартовую страницу",
             "on boards": "На доски",
+            "are you sure": "Ты уверен?",
+            "delete": "Удалить",
+            "cancel": "Отменить",
         }
     },
 }
