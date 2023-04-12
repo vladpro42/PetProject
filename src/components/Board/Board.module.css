@@ -53,10 +53,8 @@
 .form__label input {}
 
 .app {
-  /* pointer-events: none; */
   display: inline-flex;
   min-height: 100vh;
-  min-width: 100vh;
   margin-top: var(--heightHeader);
   padding-top: 10px;
 }
