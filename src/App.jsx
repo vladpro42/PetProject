@@ -11,16 +11,8 @@ import { AuthProvider } from './hoc/AuthProvider';
 import EditProfilePage from './pages/EditProfilePage';
 import AuthCheck from './hoc/AuthCheck';
 import Board from './components/Board/Board';
-import { useEffect } from 'react';
 
 const App = () => {
-
-  useEffect(() => {
-    console.log(document.querySelector(".board__inner"))
-
-
-  }, [])
-
 
   return (
     <AuthProvider>
