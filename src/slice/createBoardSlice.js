@@ -59,19 +59,16 @@ export const createBoardSlice = createSlice({
                 if (item.boardId !== payload.current) {
                     return item
                 }
-                return item
             })
             alertDeleteBoard = !alertDeleteBoard
             return { boards, alertDeleteBoard, ...other }
         },
 
         toggleAlertDeleteBoard: (state, action) => {
-            console.log(action)
             if (action.payload === "board") {
                 state.alertDeleteBoard = !state.alertDeleteBoard;
                 return state
             }
-            return state
         },
 
         handleDragEnd: (state, action) => {
@@ -141,6 +138,7 @@ export const createBoardSlice = createSlice({
             state.boards[0].items.push({
                 id: Date.now(), content: action.payload
             });
+            state.showFormCreateTask = !state.showFormCreateTask
         },
 
         openFormCreateTask: (state) => {
@@ -148,7 +146,6 @@ export const createBoardSlice = createSlice({
         },
 
         removeTask: (state, action) => {
-            console.log(action.payload)
 
             state.boards.filter(board => {
                 if (board.boardId === action.payload.boardId) {
@@ -156,11 +153,11 @@ export const createBoardSlice = createSlice({
                         if (item.id !== action.payload.taskId) {
                             return item
                         }
-                        return item
+                        return
                     })
                     return board
                 }
-                return board
+                return
             })
         },
     },
