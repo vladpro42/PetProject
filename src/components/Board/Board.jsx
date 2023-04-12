@@ -46,7 +46,7 @@ const Board = () => {
         </Droppable>
       </DragDropContext>
       <FormCreateBoard />
-      {flagFormCreateNewTask && <FormCreateNewTask />}
+      {flagFormCreateNewTask && <FormCreateNewTask flagFormCreateNewTask={flagFormCreateNewTask}/>}
 
 
     </div>

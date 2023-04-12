@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux';
 
 import { openFormCreateTask } from '../slice/createBoardSlice';
@@ -7,7 +7,7 @@ import { createTask } from '../slice/createBoardSlice';
 import css from "./Board/Board.module.css"
 import { useTranslation } from 'react-i18next';
 
-const FormCreateNewTask = () => {
+const FormCreateNewTask = ({ flagFormCreateNewTask }) => {
 
   const { t } = useTranslation();
 
@@ -19,6 +19,10 @@ const FormCreateNewTask = () => {
     dispatch(createTask(todo));
     setTodo("");
   };
+
+  useEffect(() => {
+    document.body.style.overflow = "hidden"
+  }, [flagFormCreateNewTask])
 
   return (
     <form className={css.form__createTask} onClick={() => dispatch(openFormCreateTask())}>
