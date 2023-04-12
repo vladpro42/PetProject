@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/static/css/main.a5c5ae0f.css",
+    "main.js": "/static/js/main.de5de8e4.js",
+    "static/media/vec__photo.jpg": "/static/media/vec__photo.c9dee1c393c0ec144fda.jpg",
+    "static/media/kanban.svg": "/static/media/kanban.433e621926c925d3c94abdc989ce8222.svg",
+    "static/media/abot__dev.jpg": "/static/media/abot__dev.380f1fdd49dcb8fdcbca.jpg",
+    "index.html": "/index.html",
+    "main.a5c5ae0f.css.map": "/static/css/main.a5c5ae0f.css.map",
+    "main.de5de8e4.js.map": "/static/js/main.de5de8e4.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.a5c5ae0f.css",
+    "static/js/main.de5de8e4.js"
+  ]
+}
