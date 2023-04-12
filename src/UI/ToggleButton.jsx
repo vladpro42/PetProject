@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { useCallback, useEffect } from 'react'
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import css from "./ToggleButton.module.css"
@@ -12,9 +12,9 @@ export const ToggleButton = () => {
 
     const { i18n } = useTranslation();
 
-    const changeLanguage = language => {
+    const changeLanguage = useCallback(language => {
         i18n.changeLanguage(language)
-    }
+    }, [i18n]);
 
     useEffect(() => {
         if (!isToggled) {
@@ -23,7 +23,7 @@ export const ToggleButton = () => {
         }
         changeLanguage("ru")
 
-    }, [isToggled])
+    }, [isToggled, changeLanguage])
 
 
     return (

@@ -2,7 +2,6 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 import { showCreateBoardForm, createBoard } from "../slice/createBoardSlice"
-import i18n from "../i18next"
 
 import css from '../style/FormCreateBoard.module.css'
 import { useTranslation } from 'react-i18next';

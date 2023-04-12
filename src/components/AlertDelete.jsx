@@ -2,7 +2,6 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import { toggleAlertDeleteBoard, removeBoard } from '../slice/createBoardSlice';
 import css from "../style/AlertDelete.module.css";
-import i18n from "../i18next"
 import { useTranslation } from 'react-i18next';
 
 const AlertDelete = ({ id }) => {

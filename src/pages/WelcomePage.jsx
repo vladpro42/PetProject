@@ -4,8 +4,6 @@ import css from "../style/WellcomePage.module.css";
 import svg from "../assets/images/kanban.svg";
 import { useTranslation } from 'react-i18next';
 
-import i18n from "../i18next"
-
 
 const WelcomePage = () => {
 

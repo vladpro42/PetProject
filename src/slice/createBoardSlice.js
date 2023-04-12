@@ -59,6 +59,7 @@ export const createBoardSlice = createSlice({
                 if (item.boardId !== payload.current) {
                     return item
                 }
+                return item
             })
             alertDeleteBoard = !alertDeleteBoard
             return { boards, alertDeleteBoard, ...other }
@@ -100,7 +101,7 @@ export const createBoardSlice = createSlice({
                     const newBoards = state.boards
                     const [filterArray] = newBoards.filter(item => item.boardId === source.droppableId)
 
-                    const current = filterArray.items.filter(item => item.id == draggableId)
+                    const current = filterArray.items.filter(item => item.id === Number(draggableId))
                     filterArray.items.splice(source.index, 1)
                     filterArray.items.splice(destination.index, 0, ...current)
 
@@ -108,7 +109,7 @@ export const createBoardSlice = createSlice({
                         if (board.boardId === source.droppableId) {
                             board = filterArray
                         }
-
+                        return board
                     })
                     return state
                 } else {
@@ -126,6 +127,7 @@ export const createBoardSlice = createSlice({
                         if (board.boardId === destination.droppableId) {
                             board = destinationBoard
                         }
+                        return board
                     })
                     return state
                 }
@@ -154,9 +156,11 @@ export const createBoardSlice = createSlice({
                         if (item.id !== action.payload.taskId) {
                             return item
                         }
+                        return item
                     })
                     return board
                 }
+                return board
             })
         },
     },

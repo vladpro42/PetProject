@@ -3,7 +3,6 @@ import { useDispatch } from 'react-redux';
 
 import { openFormCreateTask } from '../slice/createBoardSlice';
 import { createTask } from '../slice/createBoardSlice';
-import i18n from "../i18next"
 
 import css from "./Board/Board.module.css"
 import { useTranslation } from 'react-i18next';
