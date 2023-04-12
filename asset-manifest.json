@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/PetProject/static/css/main.ca133611.css",
+    "main.js": "/PetProject/static/js/main.844d1d61.js",
+    "static/media/vec__photo.jpg": "/PetProject/static/media/vec__photo.c9dee1c393c0ec144fda.jpg",
+    "static/media/kanban.svg": "/PetProject/static/media/kanban.433e621926c925d3c94abdc989ce8222.svg",
+    "static/media/abot__dev.jpg": "/PetProject/static/media/abot__dev.380f1fdd49dcb8fdcbca.jpg",
+    "index.html": "/PetProject/index.html",
+    "main.ca133611.css.map": "/PetProject/static/css/main.ca133611.css.map",
+    "main.844d1d61.js.map": "/PetProject/static/js/main.844d1d61.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.ca133611.css",
+    "static/js/main.844d1d61.js"
+  ]
+}
