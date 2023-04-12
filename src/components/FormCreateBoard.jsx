@@ -34,6 +34,9 @@ const FormCreateBoard = () => {
         if (showForm) {
             document.body.style.overflow = "hidden"
         }
+        return () => {
+            document.body.style.overflow = "initial"
+        }
     }, [showForm])
 
 
