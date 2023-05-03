@@ -19,6 +19,9 @@ const FormCreateNewTask = () => {
 
   const submitTodo = e => {
     e.preventDefault();
+    if (!todo) {
+      return
+    }
     dispatch(createTask(todo));
     setTodo("");
   };
@@ -37,7 +40,7 @@ const FormCreateNewTask = () => {
       <label className={css.form__label} onClick={e => e.stopPropagation()}>
         <h4 className={css.form__title}>{t("Create a new Task")}</h4>
         <input className={css.form__input} value={todo} onChange={e => setTodo(e.target.value)} type="text" placeholder={t("input to do")} />
-        <button type='submit' onClick={e => submitTodo(e)}>{t("submit")}</button>
+        <button className={css.form__submit} type='submit' onClick={e => submitTodo(e)}>{t("submit")}</button>
       </label>
     </form >
   );

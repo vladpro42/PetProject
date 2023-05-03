@@ -49,7 +49,6 @@ const Column = ({ boards }) => {
                                                     <Task item={item} />
                                                 </div>
                                                 {provided.placeholder}
-                                                {console.log(flagDeleteBoard, item.boardId, needId.current)}
                                                 {(flagDeleteBoard && item.boardId == needId.current) ? <AlertDelete id={needId.current} /> : <></>}
                                             </>
                                         )}

@@ -15,6 +15,9 @@ const FormCreateBoard = () => {
 
     const submitBoard = event => {
         event.preventDefault()
+        if (!title) {
+            return
+        }
         dispatchRedux(createBoard({ title }))
         dispatchRedux(showCreateBoardForm())
         setTitle("");
@@ -61,7 +64,7 @@ const FormCreateBoard = () => {
                         type="text"
                     />
                 </label>
-                <button className={css.boadrd__submit} onClick={(event) => submitBoard(event)}>{t("Create")}</button>
+                <button className={css.board__submit} onClick={(event) => submitBoard(event)}>{t("Create")}</button>
             </div>
         </form>
     );
