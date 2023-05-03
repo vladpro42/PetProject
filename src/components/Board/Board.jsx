@@ -25,6 +25,8 @@ const Board = () => {
     dispatch(handleDragEnd(result))
   }
 
+  const flagDeleteBoard = useSelector(state => state.board.alertDeleteBoard);
+
   return (
     <div className={css.board__container}>
       <nav className={css.board__navigate}>
@@ -39,6 +41,7 @@ const Board = () => {
               ref={provided.innerRef}
               {...provided.droppableProps}
             >
+              {/* {flagDeleteBoard && <AlertDelete id={{ "2-column": "2-column" }} />} */}
               <Column boards={boards} />
               {provided.placeholder}
             </div>
@@ -46,7 +49,7 @@ const Board = () => {
         </Droppable>
       </DragDropContext>
       <FormCreateBoard />
-      {flagFormCreateNewTask && <FormCreateNewTask flagFormCreateNewTask={flagFormCreateNewTask}/>}
+      {flagFormCreateNewTask && <FormCreateNewTask flagFormCreateNewTask={flagFormCreateNewTask} />}
 
 
     </div>

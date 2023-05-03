@@ -56,7 +56,7 @@ export const createBoardSlice = createSlice({
         removeBoard: (state, { payload }) => {
             let { boards, alertDeleteBoard, ...other } = state
             boards = boards.filter(item => {
-                if (item.boardId !== payload.current) {
+                if (item.boardId !== payload) {
                     return item
                 }
             })

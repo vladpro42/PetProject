@@ -8,6 +8,7 @@ import { useDispatch } from 'react-redux';
 
 const Task = ({ item }) => {
     const dispatch = useDispatch();
+
     return (
         <>
             {
@@ -29,6 +30,7 @@ const Task = ({ item }) => {
                     </Draggable>
                 ))
             }
+
         </>
     );
 };

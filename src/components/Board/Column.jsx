@@ -1,7 +1,6 @@
 import React, { useRef } from 'react'
 import { Draggable, Droppable } from 'react-beautiful-dnd'
-import { useSelector } from 'react-redux'
-import { useDispatch } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import { toggleAlertDeleteBoard } from '../../slice/createBoardSlice'
 
 import RemoveButton from "../../UI/RemoveButton"
@@ -50,6 +49,8 @@ const Column = ({ boards }) => {
                                                     <Task item={item} />
                                                 </div>
                                                 {provided.placeholder}
+                                                {console.log(flagDeleteBoard, item.boardId, needId.current)}
+                                                {(flagDeleteBoard && item.boardId == needId.current) ? <AlertDelete id={needId.current} /> : <></>}
                                             </>
                                         )}
                                     </Droppable>
@@ -64,7 +65,6 @@ const Column = ({ boards }) => {
                     )
                 })
             }
-            {flagDeleteBoard && <AlertDelete id={needId}/>}
         </>
     )
 }
