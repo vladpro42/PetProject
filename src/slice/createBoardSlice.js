@@ -1,30 +1,7 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, current } from "@reduxjs/toolkit";
 
 const initialState = {
-    boards: [{
-        boardId: "1-column", title: "ToDO", items: [
-            { id: 1, content: "call you back" },
-            { id: 2, content: "I'll need to buy some food " },
-            { id: 3, content: "Learn English today" },
-            { id: 4, content: "Learn Redux" }
-        ]
-    },
-    {
-        boardId: "2-column", title: "progress", items: [
-            { id: 5, content: "think about it" },
-            { id: 6, content: "play chess" },
-            { id: 7, content: "play LOL" },
-            { id: 8, content: "Lern Redux" }
-        ]
-    },
-    {
-        boardId: "3-column", title: "done", items: [
-            { id: 9, content: "go to the gym" },
-            { id: 10, content: "play chess" },
-            { id: 11, content: "play LOL" },
-            { id: 12, content: "Learn TypeScript" }
-        ]
-    }],
+    boards: [],
     showBoard: false,
     alertDeleteBoard: false,
     showFormCreateTask: false,
@@ -34,6 +11,15 @@ export const createBoardSlice = createSlice({
     name: "createBoard",
     initialState,
     reducers: {
+
+        getStateFromDataBase: (state, action) => {
+
+            if (action.payload) {
+                state.boards = [...action.payload]
+            }
+
+        },
+
         showCreateBoardForm: (state) => {
             state.showBoard = !state.showBoard
         },
@@ -72,6 +58,7 @@ export const createBoardSlice = createSlice({
         },
 
         handleDragEnd: (state, action) => {
+            console.log(current(state))
 
             const result = action.payload
 
@@ -97,6 +84,7 @@ export const createBoardSlice = createSlice({
                 if (source.droppableId === destination.droppableId) {
                     const newBoards = state.boards
                     const [filterArray] = newBoards.filter(item => item.boardId === source.droppableId)
+
 
                     const current = filterArray.items.filter(item => item.id === Number(draggableId))
                     filterArray.items.splice(source.index, 1)
@@ -165,6 +153,7 @@ export const createBoardSlice = createSlice({
 
 
 export const {
+    getStateFromDataBase,
     showCreateBoardForm,
     createBoard,
     handleDragEnd,

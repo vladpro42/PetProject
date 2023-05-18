@@ -1,20 +1,32 @@
-import React, { useRef } from 'react'
+import React, { useEffect, useRef } from 'react'
 import { Draggable, Droppable } from 'react-beautiful-dnd'
 import { useSelector, useDispatch } from 'react-redux'
-import { toggleAlertDeleteBoard } from '../../slice/createBoardSlice'
+import { getStateFromDataBase, toggleAlertDeleteBoard } from '../../slice/createBoardSlice'
 
 import RemoveButton from "../../UI/RemoveButton"
 import AlertDelete from "../AlertDelete";
 import Task from './Task'
+import { useGetAllTasksQuery } from '../../service/task'
 
 import css from "./Board.module.css"
 
 
-const Column = ({ boards }) => {
+const Column = ({ }) => {
+
+    const dispatch = useDispatch();
+    const { data, error, isLoading } = useGetAllTasksQuery("");
+
+    console.log(data)
+
+    useEffect(() => {
+        dispatch(getStateFromDataBase(data));
+    }, [data])
+
+
+    const boards = useSelector(state => state.board.boards)
 
     const flagDeleteBoard = useSelector(state => state.board.alertDeleteBoard);
 
-    const dispatch = useDispatch();
     const needId = useRef(null);
 
     const handleClick = (event, id) => {
@@ -25,7 +37,13 @@ const Column = ({ boards }) => {
 
     return (
         <>
-            {
+
+            {error ? (
+                <>Oh no, there was an error</>
+            ) : isLoading ? (
+                <>Loading...</>
+            ) : boards ? (
+
                 boards.map((item, index) => {
                     return (
                         <Draggable key={item.boardId} draggableId={JSON.stringify(item)} index={index}>
@@ -63,6 +81,10 @@ const Column = ({ boards }) => {
                         </Draggable>
                     )
                 })
+
+            ) : null}
+            {
+
             }
         </>
     )

@@ -12,7 +12,9 @@ import EditProfilePage from './pages/EditProfilePage';
 import AuthCheck from './hoc/AuthCheck';
 import Board from './components/Board/Board';
 
+
 const App = () => {
+
 
   return (
     <AuthProvider>

@@ -1,6 +1,5 @@
 import { DragDropContext, Droppable } from "react-beautiful-dnd"
-import { useDispatch } from 'react-redux';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { handleDragEnd, openFormCreateTask, showCreateBoardForm } from '../../slice/createBoardSlice';
 import FormCreateBoard from '../FormCreateBoard';
@@ -12,11 +11,11 @@ import css from './Board.module.css';
 import { useTranslation } from "react-i18next";
 
 
+
 const Board = () => {
 
   const { t } = useTranslation();
 
-  const boards = useSelector(state => state.board.boards);
   const flagFormCreateNewTask = useSelector(state => state.board.showFormCreateTask);
 
   const dispatch = useDispatch()
@@ -42,7 +41,7 @@ const Board = () => {
               {...provided.droppableProps}
             >
               {/* {flagDeleteBoard && <AlertDelete id={{ "2-column": "2-column" }} />} */}
-              <Column boards={boards} />
+              <Column />
               {provided.placeholder}
             </div>
           )}
