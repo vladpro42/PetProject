@@ -1,11 +1,11 @@
-import React from 'react';
+/* import React from 'react';
 import css from "../style/BoardList.module.css";
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
-const FormCreateTask = ({setList}) => {
+const FormCreateTask = ({ setList }) => {
 
-    const {t} = useTranslation();
+    const { t } = useTranslation();
 
     const [taskName, setTaskName] = useState("");
     const [taskDescr, setTaskDescr] = useState("");
@@ -36,4 +36,4 @@ const FormCreateTask = ({setList}) => {
     );
 };
 
-export default FormCreateTask;
+export default FormCreateTask; */

@@ -58,7 +58,6 @@ export const createBoardSlice = createSlice({
         },
 
         handleDragEnd: (state, action) => {
-            console.log(current(state))
 
             const result = action.payload
 

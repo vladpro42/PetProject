@@ -16,8 +16,6 @@ const Column = ({ }) => {
     const dispatch = useDispatch();
     const { data, error, isLoading } = useGetAllTasksQuery("");
 
-    console.log(data)
-
     useEffect(() => {
         dispatch(getStateFromDataBase(data));
     }, [data])

@@ -37,11 +37,11 @@ const FormCreateNewTask = () => {
 
   return (
     <form className={css.form__createTask} onClick={() => dispatch(openFormCreateTask())}>
-      <label className={css.form__label} onClick={e => e.stopPropagation()}>
+     { <label className={css.form__label} onClick={e => e.stopPropagation()}>
         <h4 className={css.form__title}>{t("Create a new Task")}</h4>
         <input className={css.form__input} value={todo} onChange={e => setTodo(e.target.value)} type="text" placeholder={t("input to do")} />
         <button className={css.form__submit} type='submit' onClick={e => submitTodo(e)}>{t("submit")}</button>
-      </label>
+      </label>}
     </form >
   );
 };

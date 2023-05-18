@@ -1,20 +1,17 @@
 import { DragDropContext, Droppable } from "react-beautiful-dnd"
 import { useDispatch, useSelector } from 'react-redux';
 
-import { handleDragEnd, openFormCreateTask, showCreateBoardForm } from '../../slice/createBoardSlice';
+import { handleDragEnd } from '../../slice/createBoardSlice';
 import FormCreateBoard from '../FormCreateBoard';
 import Column from './Column';
 import FormCreateNewTask from "../FormCreateNewTask"
-import ButtonCreateTask from "../../UI/ButtonCreateTask";
 
 import css from './Board.module.css';
-import { useTranslation } from "react-i18next";
+import SideBar from "../SideBar";
 
 
 
 const Board = () => {
-
-  const { t } = useTranslation();
 
   const flagFormCreateNewTask = useSelector(state => state.board.showFormCreateTask);
 
@@ -24,14 +21,9 @@ const Board = () => {
     dispatch(handleDragEnd(result))
   }
 
-  const flagDeleteBoard = useSelector(state => state.board.alertDeleteBoard);
-
   return (
     <div className={css.board__container}>
-      <nav className={css.board__navigate}>
-        <button className={css.board__createBoard} onClick={() => dispatch(showCreateBoardForm())}>{t("create a new board")}</button>
-        <ButtonCreateTask className={css.board__createBoard} onClick={() => dispatch(openFormCreateTask())} />
-      </nav>
+      <SideBar />
       <DragDropContext onDragEnd={onDragEnd}>
         <Droppable droppableId='column' direction='horizontal' type='column'>
           {(provided) => (
@@ -40,7 +32,6 @@ const Board = () => {
               ref={provided.innerRef}
               {...provided.droppableProps}
             >
-              {/* {flagDeleteBoard && <AlertDelete id={{ "2-column": "2-column" }} />} */}
               <Column />
               {provided.placeholder}
             </div>
