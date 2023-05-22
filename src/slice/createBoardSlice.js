@@ -1,4 +1,4 @@
-import { createSlice, current } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
     boards: [],
@@ -12,7 +12,7 @@ export const createBoardSlice = createSlice({
     initialState,
     reducers: {
 
-        getStateFromDataBase: (state, action) => {
+        setStateFromDataBase: (state, action) => {
 
             if (action.payload) {
                 state.boards = [...action.payload]
@@ -123,9 +123,9 @@ export const createBoardSlice = createSlice({
 
         createTask: (state, action) => {
             state.boards[0].items.push({
-                id: Date.now(), content: action.payload
+                content: action.payload.todo
             });
-            state.showFormCreateTask = !state.showFormCreateTask
+            openFormCreateTask(state)
         },
 
         openFormCreateTask: (state) => {
@@ -140,11 +140,9 @@ export const createBoardSlice = createSlice({
                         if (item.id !== action.payload.taskId) {
                             return item
                         }
-                        return
                     })
                     return board
                 }
-                return
             })
         },
     },
@@ -152,7 +150,7 @@ export const createBoardSlice = createSlice({
 
 
 export const {
-    getStateFromDataBase,
+    setStateFromDataBase,
     showCreateBoardForm,
     createBoard,
     handleDragEnd,

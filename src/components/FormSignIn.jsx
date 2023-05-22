@@ -7,7 +7,7 @@ import css from "../style/SignUp.module.css";
 
 const FormSignIn = () => {
 
-    const {t} = useTranslation();
+    const { t } = useTranslation();
 
     const navigate = useNavigate();
 

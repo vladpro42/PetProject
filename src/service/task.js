@@ -9,7 +9,7 @@ export const taskApi = createApi(
 
         endpoints: (builder) => ({
             getAllTasks: builder.query({
-                query: (name) => `task/${name}`,
+                query: (name) => `api/${name}`,
             }),
         }),
     }

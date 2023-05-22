@@ -3,17 +3,35 @@ import { Draggable } from 'react-beautiful-dnd';
 
 import RemoveButton from '../../UI/RemoveButton';
 import css from "./Board.module.css";
-import { removeTask } from "../../slice/createBoardSlice";
 import { useDispatch } from 'react-redux';
+import { tasksUrl } from '../../config';
+import { getTasks } from '../../utils/fetchTask';
+import { setStateFromDataBase } from '../../slice/createBoardSlice';
 
-const Task = ({ item }) => {
+const Task = ({ board }) => {
+
     const dispatch = useDispatch();
+
+    const onCLick = async (id) => {
+
+        const response = await fetch(tasksUrl + `/${id}`, {
+            method: "DELETE",
+            headers: {
+                'Content-Type': 'application/json;charset=utf-8'
+            },
+        })
+
+        if (response.ok) {
+            const response = await getTasks(tasksUrl)
+            dispatch(setStateFromDataBase(response))
+        }
+    }
 
     return (
         <>
             {
-                item.items.map((child, index) => (
-                    <Draggable key={child.id} draggableId={child.id.toString()} index={index}>
+                board.items.map((task, index) => (
+                    <Draggable key={task.id} draggableId={task.id.toString()} index={index}>
                         {(provided) => (
                             <p
                                 className={css.todo__item}
@@ -21,10 +39,10 @@ const Task = ({ item }) => {
                                 {...provided.draggableProps}
                                 {...provided.dragHandleProps}
                             >
-                                {child.content}
+                                {task.content}
                                 <RemoveButton
                                     className={css.removeButton}
-                                    onClick={() => dispatch(removeTask({ boardId: item.boardId, taskId: child.id }))} />
+                                    onClick={() => onCLick(task.id)} />
                             </p>
                         )}
                     </Draggable>

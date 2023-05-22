@@ -13,13 +13,8 @@ import css from "./Board.module.css"
 
 const Column = ({ }) => {
 
+
     const dispatch = useDispatch();
-    const { data, error, isLoading } = useGetAllTasksQuery("");
-
-    useEffect(() => {
-        dispatch(getStateFromDataBase(data));
-    }, [data])
-
 
     const boards = useSelector(state => state.board.boards)
 
@@ -35,16 +30,10 @@ const Column = ({ }) => {
 
     return (
         <>
-
-            {error ? (
-                <>Oh no, there was an error</>
-            ) : isLoading ? (
-                <>Loading...</>
-            ) : boards ? (
-
-                boards.map((item, index) => {
+            {
+                boards.map((board, index) => {
                     return (
-                        <Draggable key={item.boardId} draggableId={JSON.stringify(item)} index={index}>
+                        <Draggable key={board.boardId} draggableId={JSON.stringify(board)} index={index}>
                             {(provided) => (
                                 <div
                                     ref={provided.innerRef}
@@ -52,9 +41,9 @@ const Column = ({ }) => {
                                     className={css.boards}
                                 >
                                     <h1 {...provided.dragHandleProps}>
-                                        {item.title}
+                                        {board.title}
                                     </h1>
-                                    <Droppable droppableId={item.boardId} type='task'>
+                                    <Droppable droppableId={board.boardId} type='task'>
                                         {(provided) => (
                                             <>
                                                 <div
@@ -62,16 +51,16 @@ const Column = ({ }) => {
                                                     ref={provided.innerRef}
                                                     {...provided.droppableProps}
                                                 >
-                                                    <Task item={item} />
+                                                    <Task board={board} />
                                                 </div>
                                                 {provided.placeholder}
-                                                {(flagDeleteBoard && item.boardId == needId.current) ? <AlertDelete id={needId.current} /> : <></>}
+                                                {(flagDeleteBoard && board.boardId == needId.current) ? <AlertDelete id={needId.current} /> : <></>}
                                             </>
                                         )}
                                     </Droppable>
 
                                     <RemoveButton
-                                        onClick={(e) => handleClick(e, item.boardId)}
+                                        onClick={(e) => handleClick(e, board.boardId)}
                                     />
                                 </div>
                             )
@@ -79,10 +68,6 @@ const Column = ({ }) => {
                         </Draggable>
                     )
                 })
-
-            ) : null}
-            {
-
             }
         </>
     )

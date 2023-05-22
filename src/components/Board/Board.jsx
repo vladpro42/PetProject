@@ -10,7 +10,6 @@ import css from './Board.module.css';
 import SideBar from "../SideBar";
 
 
-
 const Board = () => {
 
   const flagFormCreateNewTask = useSelector(state => state.board.showFormCreateTask);
@@ -39,7 +38,7 @@ const Board = () => {
         </Droppable>
       </DragDropContext>
       <FormCreateBoard />
-      {flagFormCreateNewTask && <FormCreateNewTask flagFormCreateNewTask={flagFormCreateNewTask} />}
+      {flagFormCreateNewTask && <FormCreateNewTask />}
 
 
     </div>
