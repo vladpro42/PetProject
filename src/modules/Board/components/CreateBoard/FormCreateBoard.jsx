@@ -2,25 +2,50 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 
-import { showCreateBoardForm, createBoard } from "../slice/createBoardSlice"
-import css from '../style/FormCreateBoard.module.css'
+import { showCreateBoardForm, createBoard, setStateFromDataBase, setBoard } from "../reducer/createBoardSlice"
+import css from './FormCreateBoard.module.css'
+import { httpURL } from '../../../../config';
 
 const FormCreateBoard = () => {
     const { t } = useTranslation();
-
+    const boards = useSelector(state => state.board.boards)
     const showForm = useSelector(state => state.board.showBoard)
-    const dispatchRedux = useDispatch();
+    const dispatch = useDispatch();
 
     const [title, setTitle] = useState("");
 
-    const submitBoard = event => {
+    const submitBoard = async event => {
         event.preventDefault()
         if (!title) {
             return
         }
-        dispatchRedux(createBoard({ title }))
-        dispatchRedux(showCreateBoardForm())
+        dispatch(showCreateBoardForm())
         setTitle("");
+
+        const boardId = Date.now() + "-column"
+
+        const body = {
+            title,
+            boardId,
+        }
+
+        const response = await fetch(httpURL + "api/board/", {
+            method: "POST",
+            body: JSON.stringify(body),
+            headers: {
+                "Content-Type": "application/json"
+            }
+        });
+
+
+        if (response.ok) {
+            const response = await fetch(httpURL + "api/task/");
+            const data = await response.json()
+            const boards = Array.from(data)
+
+            dispatch(setStateFromDataBase(boards))
+        }
+
     };
 
     const handleBlur = e => {
@@ -46,7 +71,7 @@ const FormCreateBoard = () => {
     return (
         <form
             className={showForm ? css.create__board : css.none}
-            onClick={() => dispatchRedux(showCreateBoardForm())}
+            onClick={() => dispatch(showCreateBoardForm())}
         >
             <div
                 className={css.board__inner}

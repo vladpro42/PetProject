@@ -1,12 +1,12 @@
 import React from 'react';
 import { Draggable } from 'react-beautiful-dnd';
 
-import RemoveButton from '../../UI/RemoveButton';
-import css from "./Board.module.css";
+import RemoveButton from '../../../../UI/RemoveButton';
+import css from "../../Board.module.css";
 import { useDispatch } from 'react-redux';
-import { tasksUrl } from '../../config';
-import { getTasks } from '../../utils/fetchTask';
-import { setStateFromDataBase } from '../../slice/createBoardSlice';
+import { tasksUrl } from '../../../../config';
+import { getTasks } from '../../../../utils/fetchTask';
+import { setStateFromDataBase } from '../reducer/createBoardSlice';
 
 const Task = ({ board }) => {
 

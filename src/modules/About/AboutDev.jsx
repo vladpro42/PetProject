@@ -1,5 +1,5 @@
 import React from 'react';
-import ButtonGoBack from "../UI/ButtonGoBack";
+import ButtonGoBack from "../../UI/ButtonGoBack";
 
 const AboutDev = () => {
 

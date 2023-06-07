@@ -3,15 +3,15 @@ import ReactDOM from 'react-dom/client';
 import './style/index.css';
 import App from './App';
 import { BrowserRouter } from 'react-router-dom';
-import { store } from "./reduxStore/store";
+import { store } from "./store";
 import { Provider } from 'react-redux';
 import "./i18next"
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <BrowserRouter>
-    <Provider store={store} >
+  <Provider store={store} >
+    <BrowserRouter>
       <App />
-    </Provider>
-  </BrowserRouter>
+    </BrowserRouter>
+  </Provider>
 
 );

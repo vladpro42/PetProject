@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 import { useTranslation } from 'react-i18next';
 import { useNavigate, Link } from 'react-router-dom';
-import { useAuth } from '../hooks/useAuth';
-import css from "../style/SignUp.module.css";
+import { useAuth } from '../../hooks/useAuth';
+import css from "../SignUp/SignUp.module.css";
 
 
 const FormSignIn = () => {

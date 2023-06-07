@@ -1,14 +1,14 @@
 import React, { useEffect, useRef } from 'react'
 import { Draggable, Droppable } from 'react-beautiful-dnd'
 import { useSelector, useDispatch } from 'react-redux'
-import { getStateFromDataBase, toggleAlertDeleteBoard } from '../../slice/createBoardSlice'
+import { getStateFromDataBase, toggleAlertDeleteBoard } from '../reducer/createBoardSlice'
 
-import RemoveButton from "../../UI/RemoveButton"
-import AlertDelete from "../AlertDelete";
-import Task from './Task'
-import { useGetAllTasksQuery } from '../../service/task'
+import RemoveButton from "../../../../UI/RemoveButton"
+import AlertDelete from "../AlertDelete/AlertDelete";
+import Task from '../Task/Task'
+import { useGetAllTasksQuery } from '../../../../service/task'
 
-import css from "./Board.module.css"
+import css from "../../Board.module.css"
 
 
 const Column = ({ }) => {
@@ -23,6 +23,7 @@ const Column = ({ }) => {
     const needId = useRef(null);
 
     const handleClick = (event, id) => {
+
         dispatch(toggleAlertDeleteBoard("board"))
         needId.current = id
     }

@@ -1,5 +1,6 @@
 import { useDispatch } from "react-redux"
-import { setStateFromDataBase } from "../slice/createBoardSlice"
+import { setStateFromDataBase } from "../modules/Board/components/reducer/createBoardSlice"
+import { configureStore } from "@reduxjs/toolkit"
 
 export const getTasks = async (url) => {
     const response = await fetch(url)

@@ -1,11 +1,15 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
-import { useAuth } from '../hooks/useAuth';
-import css from "../style/SignUp.module.css";
+import css from "./SignUp.module.css";
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import { useDispatch } from 'react-redux';
+import { setUser } from '../../slice/userSlice';
+
 
 const FormSingUp = () => {
+  const dispatch = useDispatch();
+
 
   const { t } = useTranslation();
 
@@ -13,14 +17,39 @@ const FormSingUp = () => {
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
 
-  const { signUp } = useAuth();
   const navigate = useNavigate()
 
-  const handleClickSingUp = e => {
+
+  const handleClickSingUp = async e => {
     e.preventDefault();
-    signUp({
-      login, password, email
-    }, () => navigate("/main"))
+
+    const body = {
+      email,
+      password
+    }
+
+    const response = await fetch("http://localhost:5555/api/registration", {
+      body: JSON.stringify(body),
+      method: "POST",
+      headers: {
+        "Content-type": "application/json"
+      }
+    });
+
+    if (!response.ok) {
+      return alert("Не удалось установить связь с сервером")
+    }
+
+    if (response.error) {
+      return alert("Ошибка регистрации")
+    }
+
+
+    const fetchingData = await response.json()
+    dispatch(setUser(fetchingData.user))
+    localStorage.setItem("token", fetchingData.accessToken)
+    navigate("/main")
+
   }
 
   return (

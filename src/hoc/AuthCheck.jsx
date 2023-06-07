@@ -4,7 +4,7 @@ import { useAuth } from '../hooks/useAuth';
 import { useFetchData } from '../utils/fetchTask';
 import { getTasks } from '../utils/fetchTask';
 import { useDispatch } from 'react-redux';
-import { setStateFromDataBase } from '../slice/createBoardSlice';
+import { setStateFromDataBase } from '../modules/Board/components/reducer/createBoardSlice';
 
 const AuthCheck = ({ children }) => {
 

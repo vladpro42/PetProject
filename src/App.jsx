@@ -1,18 +1,27 @@
 
-import { Route, Routes } from 'react-router-dom';
-import AboutDev from './components/AboutDev';
-import AboutProject from './components/AboutProject';
-import FormSignIn from './components/FormSignIn';
-import FormSingUp from './components/FormSingUp';
+import { Route, Routes, useNavigate } from 'react-router-dom';
+import AboutDev from './modules/About/AboutDev';
+import AboutProject from './modules/About/AboutProject';
+import FormSignIn from './modules/SignIn/FormSignIn';
+import FormSingUp from './modules/SignUp/FormSingUp';
 import Layout from './components/Layout';
 import WelcomePage from './pages/WelcomePage';
 import './style/App.css';
 import { AuthProvider } from './hoc/AuthProvider';
 import EditProfilePage from './pages/EditProfilePage';
 import AuthCheck from './hoc/AuthCheck';
-import Board from './components/Board/Board';
+import Board from './modules/Board/Board';
+import { useEffect } from 'react';
 
 const App = () => {
+
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (localStorage.getItem("token")) {
+      navigate("/main")
+    }
+  }, [])
 
   return (
     <AuthProvider>

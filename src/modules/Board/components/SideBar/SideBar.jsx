@@ -1,11 +1,11 @@
 import React from 'react';
 
 import { useDispatch } from 'react-redux';
-import { openFormCreateTask, showCreateBoardForm } from '../slice/createBoardSlice';
+import { openFormCreateTask, showCreateBoardForm } from '../reducer/createBoardSlice';
 import { useTranslation } from 'react-i18next';
-import ButtonCreateTask from "../UI/ButtonCreateTask";
+import ButtonCreateTask from "../../../../UI/ButtonCreateTask";
 
-import css from "./Board/Board.module.css";
+import css from "../../Board.module.css";
 
 const SideBar = () => {
 

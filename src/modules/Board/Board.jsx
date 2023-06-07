@@ -1,13 +1,13 @@
 import { DragDropContext, Droppable } from "react-beautiful-dnd"
 import { useDispatch, useSelector } from 'react-redux';
 
-import { handleDragEnd } from '../../slice/createBoardSlice';
-import FormCreateBoard from '../FormCreateBoard';
-import Column from './Column';
-import FormCreateNewTask from "../FormCreateNewTask"
+import { handleDragEnd } from './components/reducer/createBoardSlice';
+import FormCreateBoard from './components/CreateBoard/FormCreateBoard';
+import Column from './components/Column/Column';
+import FormCreateNewTask from "./components/CreateTask/FormCreateNewTask"
 
 import css from './Board.module.css';
-import SideBar from "../SideBar";
+import SideBar from "./components/SideBar/SideBar";
 
 
 const Board = () => {

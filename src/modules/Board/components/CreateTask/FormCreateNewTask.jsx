@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 
-import { openFormCreateTask, setStateFromDataBase } from '../slice/createBoardSlice';
+import { openFormCreateTask, setStateFromDataBase } from '../reducer/createBoardSlice';
 
-import css from "./Board/Board.module.css"
+import css from "../CreateBoard/FormCreateBoard.module.css"
 import { useTranslation } from 'react-i18next';
-import { httpURL, tasksUrl } from '../config';
-import { getTasks } from '../utils/fetchTask';
+import { httpURL, tasksUrl } from '../../../../config';
+import { getTasks } from '../../../../utils/fetchTask';
 
 const FormCreateNewTask = () => {
 

@@ -13,7 +13,7 @@ export const createBoardSlice = createSlice({
     reducers: {
 
         setStateFromDataBase: (state, action) => {
-
+            
             if (action.payload) {
                 state.boards = [...action.payload]
             }
