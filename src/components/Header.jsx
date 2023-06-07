@@ -1,17 +1,18 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
-import { useAuth } from '../hooks/useAuth';
 import ButtonGoBack from '../UI/ButtonGoBack';
 import { ToggleButton } from '../UI/ToggleButton';
 
 import css from "../style/Header.module.css"
+import { useSelector } from 'react-redux';
+import { getAuth } from '../modules/SignIn/api/userSlice';
 
 
 const Header = () => {
 
     const { t } = useTranslation();
-    const { user } = useAuth();
+    const user = useSelector(getAuth)
 
     return (
         <header className={css.header}>

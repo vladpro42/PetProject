@@ -1,10 +1,10 @@
-import { DragDropContext, Droppable } from "react-beautiful-dnd"
+import { DragDropContext, Droppable } from "react-beautiful-dnd";
 import { useDispatch, useSelector } from 'react-redux';
 
-import { handleDragEnd } from './components/reducer/createBoardSlice';
+import { getFlagFormCreateTask, handleDragEnd } from './reducer/createBoardSlice';
 import FormCreateBoard from './components/CreateBoard/FormCreateBoard';
 import Column from './components/Column/Column';
-import FormCreateNewTask from "./components/CreateTask/FormCreateNewTask"
+import FormCreateNewTask from "./components/CreateTask/FormCreateNewTask";
 
 import css from './Board.module.css';
 import SideBar from "./components/SideBar/SideBar";
@@ -12,12 +12,12 @@ import SideBar from "./components/SideBar/SideBar";
 
 const Board = () => {
 
-  const flagFormCreateNewTask = useSelector(state => state.board.showFormCreateTask);
+  const flagFormCreateNewTask = useSelector(getFlagFormCreateTask);
 
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   const onDragEnd = result => {
-    dispatch(handleDragEnd(result))
+    dispatch(handleDragEnd(result));
   }
 
   return (
@@ -39,10 +39,7 @@ const Board = () => {
       </DragDropContext>
       <FormCreateBoard />
       {flagFormCreateNewTask && <FormCreateNewTask />}
-
-
     </div>
-
   );
 }
 

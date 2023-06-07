@@ -13,7 +13,7 @@ export const createBoardSlice = createSlice({
     reducers: {
 
         setStateFromDataBase: (state, action) => {
-            
+                console.log(action.payload)
             if (action.payload) {
                 state.boards = [...action.payload]
             }
@@ -162,3 +162,5 @@ export const {
 } = createBoardSlice.actions
 
 export default createBoardSlice.reducer
+
+export const getFlagFormCreateTask = state => state.board.showFormCreateTask;

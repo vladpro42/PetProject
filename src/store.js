@@ -1,8 +1,8 @@
 import { configureStore } from "@reduxjs/toolkit";
-import createBoardReducer from "./modules/Board/components/reducer/createBoardSlice";
+import createBoardReducer from "./modules/Board/reducer/createBoardSlice";
 import { taskApi } from "./service/task";
 import { setupListeners } from "@reduxjs/toolkit/dist/query";
-import userReducer from "./slice/userSlice.js"
+import userReducer from "./modules/SignIn/api/userSlice"
 
 export const store = configureStore({
     reducer: {

@@ -1,12 +1,11 @@
-import React, { useEffect, useRef } from 'react'
+import React, { useRef } from 'react'
 import { Draggable, Droppable } from 'react-beautiful-dnd'
 import { useSelector, useDispatch } from 'react-redux'
-import { getStateFromDataBase, toggleAlertDeleteBoard } from '../reducer/createBoardSlice'
+import { toggleAlertDeleteBoard } from '../../reducer/createBoardSlice'
 
 import RemoveButton from "../../../../UI/RemoveButton"
 import AlertDelete from "../AlertDelete/AlertDelete";
 import Task from '../Task/Task'
-import { useGetAllTasksQuery } from '../../../../service/task'
 
 import css from "../../Board.module.css"
 

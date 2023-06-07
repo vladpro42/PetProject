@@ -1,0 +1,50 @@
+.form__createTask {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background: var(--popupInner, #000);
+}
+
+.form__label {
+    position: absolute;
+    display: flex;
+    padding: 50px 25px;
+    border-radius: 25px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: var(--formBackground);
+}
+
+.form__title {
+    color: var(--white);
+    margin-bottom: 25px;
+    font-size: 1.25rem;
+}
+
+
+.form__input {
+    height: 40px;
+    padding: 10px;
+    margin-bottom: 25px;
+    outline: none;
+    background: var(--white, #fff);
+    border: none;
+}
+
+.form__submit {
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    transition: transform 200ms ease, background 200ms ease;
+}
+
+.form__submit:hover {
+    background: lightgray;
+    transform: scale(1.05);
+}

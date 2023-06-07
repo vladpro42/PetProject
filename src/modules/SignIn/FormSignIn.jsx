@@ -1,25 +1,35 @@
 import React, { useState } from 'react'
 import { useTranslation } from 'react-i18next';
 import { useNavigate, Link } from 'react-router-dom';
-import { useAuth } from '../../hooks/useAuth';
 import css from "../SignUp/SignUp.module.css";
-
+import { login, loginUrl } from './api/auth-api';
+import { useDispatch } from 'react-redux';
+import { setUser, setAuth } from './api/userSlice';
 
 const FormSignIn = () => {
-
+    const dispath = useDispatch();
     const { t } = useTranslation();
-
     const navigate = useNavigate();
 
-    const { signIn } = useAuth()
-
-    const [login, setLogin] = useState("");
+    const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
-    const handleClickSubmit = e => {
+    const handleClickSubmit = async (e, url, body) => {
         e.preventDefault();
-        signIn({ login, password }, () => navigate("/main", { replace: true }));
+        const response = await login(url, body);
+        console.log(response)
+        if (response.ok) {
+            navigate("/main", { replace: true })
+        }
+        else {
+            return
+        }
+        const fethData = await response.json();
+        localStorage.setItem("token", fethData.accessToken);
+        dispath(setUser(fethData.user))
+        dispath(setAuth(true))
     }
+
 
     return (
 
@@ -29,9 +39,9 @@ const FormSignIn = () => {
                 <div className={css.sign__wrapper}>
                     <label className={css.label}>
                         <input
-                            name='login'
-                            value={login}
-                            onChange={e => setLogin(e.target.value)}
+                            name='email'
+                            value={email}
+                            onChange={e => setEmail(e.target.value)}
                             className={css.input}
                             type="text"
                             placeholder={t("input login or email placeholder")}
@@ -48,7 +58,11 @@ const FormSignIn = () => {
                         />
                     </label>
                 </div>
-                <button onClick={handleClickSubmit} type='submit' className={css.signUp}>
+                <button
+                    onClick={(e) => handleClickSubmit(e, loginUrl, { email, password })}
+                    type='submit'
+                    className={css.signUp}
+                >
                     {t("sign button")}
                 </button>
                 <Link to="/auth/register" className={css.text}>{t("I don't have an account")}</Link>

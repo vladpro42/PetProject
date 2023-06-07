@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { useDispatch } from 'react-redux';
-import { openFormCreateTask, showCreateBoardForm } from '../reducer/createBoardSlice';
+import { openFormCreateTask, showCreateBoardForm } from '../../reducer/createBoardSlice';
 import { useTranslation } from 'react-i18next';
 import ButtonCreateTask from "../../../../UI/ButtonCreateTask";
 

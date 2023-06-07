@@ -2,9 +2,9 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 
-import { showCreateBoardForm, createBoard, setStateFromDataBase, setBoard } from "../reducer/createBoardSlice"
+import { showCreateBoardForm, setStateFromDataBase } from "../../reducer/createBoardSlice"
 import css from './FormCreateBoard.module.css'
-import { httpURL } from '../../../../config';
+import { backendUrl } from '../../../SignIn/api/auth-api';
 
 const FormCreateBoard = () => {
     const { t } = useTranslation();
@@ -29,22 +29,24 @@ const FormCreateBoard = () => {
             boardId,
         }
 
-        const response = await fetch(httpURL + "api/board/", {
+        const response = await fetch(backendUrl + "/board", {
             method: "POST",
             body: JSON.stringify(body),
             headers: {
-                "Content-Type": "application/json"
+                "Content-Type": "application/json",
+                "Accept": "application/json"
             }
         });
 
 
-        if (response.ok) {
-            const response = await fetch(httpURL + "api/task/");
-            const data = await response.json()
-            const boards = Array.from(data)
-
-            dispatch(setStateFromDataBase(boards))
+        if (!response.ok) {
+            return
         }
+
+        const res = await fetch(backendUrl + "/task/");
+        const data = await res.json()
+        const boards = Array.from(data)
+        dispatch(setStateFromDataBase(boards))
 
     };
 

@@ -1,12 +1,12 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { openFormCreateTask, setStateFromDataBase } from '../../reducer/createBoardSlice';
 
-import { openFormCreateTask, setStateFromDataBase } from '../reducer/createBoardSlice';
-
-import css from "../CreateBoard/FormCreateBoard.module.css"
+import css from "./FormCreateNewTask.module.css"
 import { useTranslation } from 'react-i18next';
-import { httpURL, tasksUrl } from '../../../../config';
-import { getTasks } from '../../../../utils/fetchTask';
+import { tasksUrl } from '../../../../config';
+import { getTasks } from '../../utils/fetchTask';
+import { backendUrl } from '../../../SignIn/api/auth-api';
 
 const FormCreateNewTask = () => {
 
@@ -31,18 +31,19 @@ const FormCreateNewTask = () => {
       content: todo,
     }
 
-    const response = await fetch(httpURL + "api/task", {
+    const response = await fetch(backendUrl + "/task", {
       method: "POST",
       body: JSON.stringify(body),
       headers: {
-        'Content-Type': 'application/json;charset=utf-8'
+        'Content-Type': 'application/json;charset=utf-8',
       },
     })
 
-    if (response.ok) {
-      const response = await getTasks(tasksUrl)
-      dispatch(setStateFromDataBase(response))
+    if (!response.ok) {
+      return
     }
+    const data = await getTasks(backendUrl + "/task")
+    dispatch(setStateFromDataBase(data))
     dispatch(openFormCreateTask());
     setTodo("");
   }

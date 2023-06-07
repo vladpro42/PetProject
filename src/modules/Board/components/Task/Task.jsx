@@ -5,8 +5,8 @@ import RemoveButton from '../../../../UI/RemoveButton';
 import css from "../../Board.module.css";
 import { useDispatch } from 'react-redux';
 import { tasksUrl } from '../../../../config';
-import { getTasks } from '../../../../utils/fetchTask';
-import { setStateFromDataBase } from '../reducer/createBoardSlice';
+import { getTasks } from '../../utils/fetchTask';
+import { setStateFromDataBase } from '../../reducer/createBoardSlice';
 
 const Task = ({ board }) => {
 

@@ -10,11 +10,12 @@ export const userSlice = createSlice({
     initialState,
     reducers: {
         setAuth(state, action) {
-            state.isAuth = action.payload.isAuth
+            console.log(action.payload)
+            state.isAuth = action.payload
         },
 
         setUser(state, action) {
-            state.user = action.payload.user
+            state.user = action.payload
         },
 
         /* async login(email, password) {
@@ -33,3 +34,6 @@ export const userSlice = createSlice({
 export const { setAuth, setUser } = userSlice.actions
 
 export default userSlice.reducer
+
+export const getUser = (state) => state.user.user
+export const getAuth = (state) => state.user.isAuth

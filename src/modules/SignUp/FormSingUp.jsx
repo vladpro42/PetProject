@@ -4,7 +4,7 @@ import css from "./SignUp.module.css";
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useDispatch } from 'react-redux';
-import { setUser } from '../../slice/userSlice';
+import { setUser } from '../SignIn/api/userSlice';
 
 
 const FormSingUp = () => {
