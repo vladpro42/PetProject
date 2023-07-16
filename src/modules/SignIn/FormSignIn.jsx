@@ -17,7 +17,6 @@ const FormSignIn = () => {
     const handleClickSubmit = async (e, url, body) => {
         e.preventDefault();
         const response = await login(url, body);
-        console.log(response)
         if (response.ok) {
             navigate("/main", { replace: true })
         }
@@ -25,9 +24,9 @@ const FormSignIn = () => {
             return
         }
         const fethData = await response.json();
+        dispath(setAuth(true))
         localStorage.setItem("token", fethData.accessToken);
         dispath(setUser(fethData.user))
-        dispath(setAuth(true))
     }
 
 

@@ -3,6 +3,7 @@ export const PORT = 5554;
 export const backendUrl = `http://localhost:${PORT}/api`;
 
 export const loginUrl = backendUrl + "/login";
+export const registerUrl = backendUrl + "/registration";
 export const checkTokenUrl = backendUrl + "/checkToken/:";
 
 export const login = async (url, body) => {

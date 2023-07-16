@@ -1,4 +1,5 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, current } from "@reduxjs/toolkit";
+import { backendUrl } from "../../SignIn/api/auth-api";
 
 const initialState = {
     boards: [],
@@ -13,11 +14,8 @@ export const createBoardSlice = createSlice({
     reducers: {
 
         setStateFromDataBase: (state, action) => {
-                console.log(action.payload)
-            if (action.payload) {
-                state.boards = [...action.payload]
-            }
-
+            console.log(action.payload)
+            state.boards = action.payload
         },
 
         showCreateBoardForm: (state) => {
@@ -72,9 +70,16 @@ export const createBoardSlice = createSlice({
 
             if (result.type === "column") {
 
-                const newBoards = state.boards
-                newBoards.splice(source.index, 1)
-                newBoards.splice(destination.index, 0, JSON.parse(draggableId))
+                /*  const boards = state.boards
+                 const sourceArray = boards[source.index]
+                 const destinationArray = boards[destination.index]
+                 const sourceOrder = sourceArray.order
+                 const destinationOrder = destinationArray.order
+                 sourceArray.order = destinationOrder
+                 destinationArray.order = sourceOrder */
+
+                
+
                 return state
             }
 
@@ -164,3 +169,4 @@ export const {
 export default createBoardSlice.reducer
 
 export const getFlagFormCreateTask = state => state.board.showFormCreateTask;
+export const getBoards = state => state.board.boards

@@ -12,7 +12,7 @@ import AuthCheck from './hoc/AuthCheck';
 import Board from './modules/Board/Board';
 
 const App = () => {
-
+console.log("Перересовка")
   return (
       <Routes>
         <Route path='/' element={<Layout />}>

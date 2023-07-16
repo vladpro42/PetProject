@@ -4,7 +4,8 @@ import css from "./SignUp.module.css";
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useDispatch } from 'react-redux';
-import { setUser } from '../SignIn/api/userSlice';
+import { setAuth, setUser } from '../SignIn/api/userSlice';
+import { registerUrl } from "../SignIn/api/auth-api"
 
 
 const FormSingUp = () => {
@@ -28,11 +29,12 @@ const FormSingUp = () => {
       password
     }
 
-    const response = await fetch("http://localhost:5555/api/registration", {
+    const response = await fetch(registerUrl, {
       body: JSON.stringify(body),
       method: "POST",
       headers: {
-        "Content-type": "application/json"
+        "Content-type": "application/json",
+        "Accept": "application/json"
       }
     });
 
@@ -47,6 +49,7 @@ const FormSingUp = () => {
 
     const fetchingData = await response.json()
     dispatch(setUser(fetchingData.user))
+    dispatch(setAuth(true))
     localStorage.setItem("token", fetchingData.accessToken)
     navigate("/main")
 

@@ -16,7 +16,11 @@ const AuthCheck = ({ children }) => {
     if (isAuth) {
         getTasks(backendUrl + "/task")
             .then((data) => dispath(setStateFromDataBase(data)))
+
+        //return <Navigate to={"/main"} replace={true} />
     }
+
+
 
     return (
         <>

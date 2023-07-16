@@ -5,6 +5,7 @@ import { useTranslation } from 'react-i18next';
 import { showCreateBoardForm, setStateFromDataBase } from "../../reducer/createBoardSlice"
 import css from './FormCreateBoard.module.css'
 import { backendUrl } from '../../../SignIn/api/auth-api';
+import { getTasks } from '../../utils/fetchTask';
 
 const FormCreateBoard = () => {
     const { t } = useTranslation();
@@ -14,7 +15,7 @@ const FormCreateBoard = () => {
 
     const [title, setTitle] = useState("");
 
-    const submitBoard = async event => {
+    const submitBoard = async (event) => {
         event.preventDefault()
         if (!title) {
             return
@@ -27,6 +28,7 @@ const FormCreateBoard = () => {
         const body = {
             title,
             boardId,
+            order: 3
         }
 
         const response = await fetch(backendUrl + "/board", {
@@ -34,7 +36,8 @@ const FormCreateBoard = () => {
             body: JSON.stringify(body),
             headers: {
                 "Content-Type": "application/json",
-                "Accept": "application/json"
+                "Accept": "application/json",
+                "Authorization": `Bearer ${localStorage.getItem("token")}`
             }
         });
 
@@ -43,8 +46,7 @@ const FormCreateBoard = () => {
             return
         }
 
-        const res = await fetch(backendUrl + "/task/");
-        const data = await res.json()
+        const data = await getTasks(backendUrl + "/task/");
         const boards = Array.from(data)
         dispatch(setStateFromDataBase(boards))
 
@@ -91,9 +93,12 @@ const FormCreateBoard = () => {
                         type="text"
                     />
                 </label>
+                <label>
+                    <input type='number' min={1}></input>
+                </label>
                 <button className={css.board__submit} onClick={(event) => submitBoard(event)}>{t("Create")}</button>
             </div>
-        </form>
+        </form >
     );
 }
 

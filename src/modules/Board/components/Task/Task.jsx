@@ -4,9 +4,9 @@ import { Draggable } from 'react-beautiful-dnd';
 import RemoveButton from '../../../../UI/RemoveButton';
 import css from "../../Board.module.css";
 import { useDispatch } from 'react-redux';
-import { tasksUrl } from '../../../../config';
 import { getTasks } from '../../utils/fetchTask';
 import { setStateFromDataBase } from '../../reducer/createBoardSlice';
+import { backendUrl } from '../../../SignIn/api/auth-api';
 
 const Task = ({ board }) => {
 
@@ -14,15 +14,17 @@ const Task = ({ board }) => {
 
     const onCLick = async (id) => {
 
-        const response = await fetch(tasksUrl + `/${id}`, {
+        const response = await fetch(backendUrl + "/task" + `/${id}`, {
             method: "DELETE",
             headers: {
-                'Content-Type': 'application/json;charset=utf-8'
+                'Content-Type': 'application/json;charset=utf-8',
+                "Accept": "application/json",
+                "Authorization": `Bearer ${localStorage.getItem("token")}`
             },
         })
 
         if (response.ok) {
-            const response = await getTasks(tasksUrl)
+            const response = await getTasks(backendUrl + "/task")
             dispatch(setStateFromDataBase(response))
         }
     }

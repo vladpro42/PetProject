@@ -36,12 +36,35 @@ const FormCreateNewTask = () => {
       body: JSON.stringify(body),
       headers: {
         'Content-Type': 'application/json;charset=utf-8',
+        'Accept': 'application/json;',
+        "Authorization": `Bearer ${localStorage.getItem("token")}`
       },
     })
+
+    if (response.status === 401) {
+      const response = await fetch(backendUrl + "/refresh", { credentials: "include" })
+      const data = await response.json()
+      localStorage.setItem("token", data.accessToken)
+
+      const responseAgan = await fetch(backendUrl + "/task", {
+        method: "POST",
+        body: JSON.stringify(body),
+        headers: {
+          'Content-Type': 'application/json;charset=utf-8',
+          'Accept': 'application/json;',
+          "Authorization": `Bearer: ${data.accessToken}`
+        },
+      })
+
+      if (!response.ok) {
+        return
+      }
+    }
 
     if (!response.ok) {
       return
     }
+
     const data = await getTasks(backendUrl + "/task")
     dispatch(setStateFromDataBase(data))
     dispatch(openFormCreateTask());

@@ -9,6 +9,9 @@ import Task from '../Task/Task'
 
 import css from "../../Board.module.css"
 
+export const compareArr = (board1, board2) => {
+    return board1.order - board2.order;
+}
 
 const Column = ({ }) => {
 
@@ -27,11 +30,10 @@ const Column = ({ }) => {
         needId.current = id
     }
 
-
     return (
         <>
             {
-                boards.map((board, index) => {
+                [...boards].sort(compareArr).map((board, index) => {
                     return (
                         <Draggable key={board.boardId} draggableId={JSON.stringify(board)} index={index}>
                             {(provided) => (
